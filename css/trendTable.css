@@ -1,0 +1,191 @@
+.CSSTableGenerator {
+	 
+	margin:0px;padding:0px;
+	width:100%;
+	float: center;
+	box-shadow: 10px 10px 5px #888888;
+	border:1px solid #000000;
+	
+	-moz-border-radius-bottomleft:1px;
+	-webkit-border-bottom-left-radius:1px;
+	border-bottom-left-radius:1px;
+	
+	-moz-border-radius-bottomright:1px;
+	-webkit-border-bottom-right-radius:1px;
+	border-bottom-right-radius:1px;
+	
+	-moz-border-radius-topright:1px;
+	-webkit-border-top-right-radius:1px;
+	border-top-right-radius:1px;
+	
+	-moz-border-radius-topleft:1px;
+	-webkit-border-top-left-radius:1px;
+	border-top-left-radius:1px;
+}.CSSTableGenerator table{
+    border-collapse: collapse;
+        border-spacing: 0;
+	width:auto;
+	height:auto;
+	margin:0px auto;padding:10px;
+}.CSSTableGenerator tr:last-child td:last-child {
+	-moz-border-radius-bottomright:0px;
+	-webkit-border-bottom-right-radius:0px;
+	border-bottom-right-radius:0px;
+}
+.CSSTableGenerator table tr:first-child td:first-child {
+	-moz-border-radius-topleft:0px;
+	-webkit-border-top-left-radius:0px;
+	border-top-left-radius:0px;
+}
+.CSSTableGenerator table tr:first-child td:last-child {
+	-moz-border-radius-topright:0px;
+	-webkit-border-top-right-radius:0px;
+	border-top-right-radius:0px;
+}.CSSTableGenerator tr:last-child td:first-child{
+	-moz-border-radius-bottomleft:0px;
+	-webkit-border-bottom-left-radius:0px;
+	border-bottom-left-radius:0px;
+}.CSSTableGenerator tr:hover td{
+	
+}
+
+tr:hover{
+
+	background:yellow;
+	border-width:3px 3px 3px 3px;
+
+}	
+
+.CSSTableGenerator tr:nth-child(odd){ background-color:#ffffff; }
+.CSSTableGenerator tr:nth-child(even)    { background-color:#BDBDBD; }.CSSTableGenerator td{
+	vertical-align:middle;
+	
+	
+	border:1px solid #000000;
+	border-width:0px 1px 1px 0px;
+	text-align:center;
+	padding:4px;
+	font-size:15px;
+	font-family:Arial;
+	font-weight:normal;
+	color:#000000;
+}.CSSTableGenerator tr:last-child td{
+	border-width:0px 1px 0px 0px;
+}.CSSTableGenerator tr td:last-child{
+	border-width:0px 0px 1px 0px;
+}.CSSTableGenerator tr:last-child td:last-child{
+	border-width:0px 0px 0px 0px;
+}
+.CSSTableGenerator tr:first-child td{
+	background:-o-linear-gradient(bottom, #0061e6 5%, #6b93c6 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #0061e6), color-stop(1, #6b93c6) );
+	background:-moz-linear-gradient( center top, #0061e6 5%, #6b93c6 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#0061e6", endColorstr="#6b93c6");	background: -o-linear-gradient(top,#0061e6,6b93c6);
+
+	height: 40px;
+	background-color:#00bfbf;
+	border:0px solid #000000;
+	text-align:center;
+	border-width:0px 0px 1px 1px;
+	font-size:20px;
+	font-family:Arial;
+	font-weight:bold;
+	color:#ffffff;
+}
+.CSSTableGenerator tr:first-child:hover td{
+	background:-o-linear-gradient(bottom, #0061e6 5%, #6b93c6 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #0061e6), color-stop(1, #6b93c6) );
+	background:-moz-linear-gradient( center top, #0061e6 5%, #6b93c6 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#0061e6", endColorstr="#6b93c6");	background: -o-linear-gradient(top,#0061e6,6b93c6);
+
+	background-color:#0061e6;
+}
+.CSSTableGenerator tr:first-child td:first-child{
+	border-width:0px 0px 1px 0px;
+}
+.CSSTableGenerator tr:first-child td:last-child{
+	border-width:0px 0px 1px 1px;
+}
+.CSSTableGenerator  td,
+.CSSTableGenerator th
+{
+    text-align:left;
+    padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+
+.CSSTableGenerator td:nth-of-type(2) {
+ text-align:left;
+ padding-left: 3px;
+ padding-right: 3px;
+ padding-top: 3px;
+ padding-bottom: 3px;
+}
+.CSSTableGenerator td + td,
+.CSSTableGenerator th + th
+{
+    text-align:center
+}
+.body
+{
+	background: url("../img/blue-sky.jpg") fixed center center
+}
+.tableheader
+{
+	width:100%
+}
+.tableheader .tablesummary
+{
+	  /* color: #d65100; */
+  color: white;
+  text-shadow: none;
+  margin-left: 42%;
+  margin-top: 10px;
+  width:25%;
+  float: left;
+  font-size: 25px;
+  vertical-align: center;
+	
+}
+
+
+td.ok {
+	color:green;
+	border-color:green;
+	
+	
+}
+
+td.issue button{
+	background:red;
+	font-weight: bold;
+	color: white;
+	
+}
+
+td.issue button:hover {
+  
+   background: #28597a;
+   color: white;
+}
+
+
+td.warning button {	
+	background	:orange;
+	font-weight: bold;
+	color: white;
+}
+
+td.warning button:hover {
+  
+   background: #28597a;
+   color: white;
+}
+
+
+
+a
+{
+color:black;
+}
+</style> 
