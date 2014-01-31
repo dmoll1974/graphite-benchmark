@@ -1,5 +1,5 @@
-var graphite_url = "http://172.26.168.161:8080";  // enter your graphite url, e.g. http://your.graphite.com
-var giraffeHost = "http://172.26.168.161/giraffe/TIF_CI";
+var graphite_url = "http://localhost:8080";  // enter your graphite url, e.g. http://your.graphite.com
+var giraffeHost = "http://localhost";
 
  
 
