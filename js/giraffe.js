@@ -453,7 +453,7 @@ Rickshaw.Graph.JSONP.Graphite = Rickshaw.Class.create(Rickshaw.Graph.JSONP, {
     for (_i = 0, _len = events_json.length; _i < _len; _i++) {
       event = events_json[_i];
     //  this.annotator.add(event.when, "" + event.what + " " + (event.data || ''));
-    	this.annotator.add(event.when, "" + event.what + " Testset: " + (event.data || '') + " Build: " + event.tags);
+    	this.annotator.add(event.when, "" + event.what + " Pipeline run: " + (event.data || '') + " App build: " + event.tags);
      }
     this.annotator.update();
     if (active_annotation) {
