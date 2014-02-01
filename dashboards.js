@@ -1,5 +1,5 @@
-var graphite_url = "http://172.21.42.152/";  // enter your graphite url, e.g. http://your.graphite.com
-var giraffeHost = "http://172.21.42.152:8080/";
+var graphite_url = "http://172.21.42.152";  // enter your graphite url, e.g. http://your.graphite.com
+var giraffeHost = "http://172.21.42.152:8080";
 
  
 
