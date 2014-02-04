@@ -54,7 +54,7 @@ var dashboards =
         "renderer": "line",
         "colspan": 3, 
         "scheme": "munin",  // this is a metric-specific color palette
-		"max" : 1500,
+		//"max" : 1500,
         "benchmarkwarning" : 0.1,
 	 "benchmarkissue" : 0.25,
       },
