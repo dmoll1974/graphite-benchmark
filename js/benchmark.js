@@ -53,7 +53,7 @@ var benchmarkSet=[];
  }
  
  	
- var eventUrl = graphiteEventHost + "/events/get_data?";
+ var eventUrl = graphite_url + "/events/get_data?";
  /*optional from and until*/
   
  if (getUrlVars()["from"]) eventUrl += "from="+ getUrlVars()["from"]+ "&";
@@ -139,7 +139,7 @@ function loadComparisonTable()
 				if (metrics[i].target[0].length < 2){
 	
 				
-					var dataUrl = graphiteEventHost + "/render?target=" + metrics[i].target + "&from=" + from + "&until=" + until + "&format=json";
+					var dataUrl = graphite_url + "/render?target=" + metrics[i].target + "&from=" + from + "&until=" + until + "&format=json";
 					
 					
 					$.ajax({
@@ -172,7 +172,7 @@ function loadComparisonTable()
 					for (k=0; k < metrics[i].target.length ; ++k)
 					{
 					
-						var dataUrl = graphiteEventHost + "/render?target=" + metrics[i].target[k] + "&from=" + from + "&until=" + until + "&format=json";
+						var dataUrl = graphite_url + "/render?target=" + metrics[i].target[k] + "&from=" + from + "&until=" + until + "&format=json";
 						
 						
 						$.ajax({
