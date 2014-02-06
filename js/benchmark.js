@@ -340,7 +340,7 @@ for (j= 0; j < testRuns.length; ++j) {
 	ifrm.height = "100%";
 	ifrm.float = "center";
 	ifrm.class = "scrollSync";
-	ifrm.src = graphite_url + "/index.html#dashboard=" + dashboardUrl + "&from=" + testRunFrom + "&until=" + testRunUntil + "&description=Build: " + testRuns[j][2] + " Testset: " + testRuns[j][3] + "&events=" + testRuns[j][2] ; 
+	ifrm.src = giraffeHost + "/index.html#dashboard=" + dashboardUrl + "&from=" + testRunFrom + "&until=" + testRunUntil + "&description=Build: " + testRuns[j][2] + " Testset: " + testRuns[j][3] + "&events=" + testRuns[j][2] ; 
 		
 }
 
