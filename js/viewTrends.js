@@ -1,4 +1,3 @@
-
  var dashboard;
  var metrics; 
  
@@ -383,7 +382,7 @@ function showGraph(thisname,dashboardUrl,metricName,baseline,benchmark) {
 		tr[i].style.display = 'none';
 	  }
 	  
-	  if (tr[i].className == thisname){
+	  if (tr[i].className.match(thisname)){
 		
 			tr[i].style.display = '';
 		 
@@ -435,7 +434,7 @@ function showTrendGraph(thisname,dashboardUrl,metricName,startTimeTrendGraph,end
 		tr[i].style.display = 'none';
 	  }
 	  
-	  if (tr[i].className == thisname){
+	  if (tr[i].className.match(thisname)){
 		
 			tr[i].style.display = '';
 		 
