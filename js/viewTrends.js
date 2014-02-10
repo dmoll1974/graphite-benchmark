@@ -208,11 +208,11 @@ var compareTable = "<div class=\"CSSTableGenerator\"><table id=\"trendTable\"><t
 for (i=0;i<trendSetTableData.length;i++){	    
 	    if (i == 0){
 
-			compareTable += "<td><code class=\"baseline center\">BASELINE</code><button class=\"btn btn-default btn-xs center\" title=\"Show release notes\" onClick=\"location.href='http://kl12cfbw.is.klmcorp.net:8080/job/Pipeline-Test_C-Stage/" + trendSetTableData[i][trendSetTableData[i].length-1] + "' target='_blank'\"><img src=\"img/settings.png\" width =12px height=12px></button></br>" + trendSetTableData[i][trendSetTableData[i].length-2] + "</td>";		
+			compareTable += "<td><code class=\"baseline center\">BASELINE</code><button class=\"btn btn-default btn-xs center\" title=\"Show release notes\" onClick=\"location.href='http://kl12cfbw.is.klmcorp.net:8080/job/Pipeline-Test_C-Stage/" + trendSetTableData[i][trendSetTableData[i].length-1] + "' target='_blank'\"><img src=\"../img/settings.png\" width =12px height=12px></button></br>" + trendSetTableData[i][trendSetTableData[i].length-2] + "</td>";		
 		
 		}else{	
 			
-			compareTable += "<td><button class=\"btn btn-default btn-xs center\" title=\"Set baseline to " + trendSetTableData[i][trendSetTableData[i].length-2] + "\" onClick=\"location.href='" + giraffeHost + "/viewTrends.html?buildMatches=" + buildMatches + "&baseline=" + trendSetTableData[i][trendSetTableData[i].length-2]  + "'\"><img src=\"img/flag.png\" width =12px height=12px></button><button class=\"btn btn-default btn-xs center\" title=\"Show release notes\" onClick=\"location.href='http://kl12cfbw.is.klmcorp.net:8080/job/Pipeline-Test_C-Stage/" + trendSetTableData[i][trendSetTableData[i].length-1] + "'\"><img src=\"img/settings.png\" width =12px height=12px></button></br>" + trendSetTableData[i][trendSetTableData[i].length-2] + "</td>"; 
+			compareTable += "<td><button class=\"btn btn-default btn-xs center\" title=\"Set baseline to " + trendSetTableData[i][trendSetTableData[i].length-2] + "\" onClick=\"location.href='" + giraffeHost + "/viewTrends.html?buildMatches=" + buildMatches + "&baseline=" + trendSetTableData[i][trendSetTableData[i].length-2]  + "'\"><img src=\"../img/flag.png\" width =12px height=12px></button><button class=\"btn btn-default btn-xs center\" title=\"Show release notes\" onClick=\"location.href='http://kl12cfbw.is.klmcorp.net:8080/job/Pipeline-Test_C-Stage/" + trendSetTableData[i][trendSetTableData[i].length-1] + "'\"><img src=\"../img/settings.png\" width =12px height=12px></button></br>" + trendSetTableData[i][trendSetTableData[i].length-2] + "</td>"; 
 		}	
 				
 }
@@ -235,11 +235,11 @@ for (i=0;i<trendSetTableData[0].length - 2 ;i++){
 		
 		if (trendSetTableData.length < 6 || trendSetTableData.length > 2  ){
 		
-			buttonFragment = "<button title=\"Show detailed graphs\" class=\"btn btn-default btn-xs center\"  onClick=\"showGraph('graph" + graphIndex + "','" + trendSetTableData[0][i][0] + "','" + trendSetTableData[0][i][1] + "','" + baselineBuild + "','" + benchmarkBuild +  "');\"><img src=\"img/benchmark.png\" width =10px height=10px></button>";
+			buttonFragment = "<button title=\"Show detailed graphs\" class=\"btn btn-default btn-xs center\"  onClick=\"showGraph('graph" + graphIndex + "','" + trendSetTableData[0][i][0] + "','" + trendSetTableData[0][i][1] + "','" + baselineBuild + "','" + benchmarkBuild +  "');\"><img src=\"../img/benchmark.png\" width =10px height=10px></button>";
 		}
 		if (trendSetTableData.length > 2 ){
 		
-			buttonFragment += "<button title=\"Show trend graph\" class=\"btn btn-default btn-xs  center\"  onClick=\"showTrendGraph('graph" + graphIndex + "','" + trendSetTableData[0][i][0] + "','" + trendSetTableData[0][i][1] + "','" + startTimeTrendGraph + "','" + endTimeTrendGraph +  "');\"><img src=\"img/trend.png\" width =10px height=10px></button>";
+			buttonFragment += "<button title=\"Show trend graph\" class=\"btn btn-default btn-xs  center\"  onClick=\"showTrendGraph('graph" + graphIndex + "','" + trendSetTableData[0][i][0] + "','" + trendSetTableData[0][i][1] + "','" + startTimeTrendGraph + "','" + endTimeTrendGraph +  "');\"><img src=\"../img/trend.png\" width =10px height=10px></button>";
 	
 		}
 		
