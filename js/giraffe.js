@@ -144,7 +144,12 @@ graphScaffold = function() {
   var convertedPeriodUntil = new Date(periodUntil * 1000);
   
   //graph_template = "{{#dashboard_description}}\n    <div class=\"well\">{{{dashboard_description}}}</div>\n{{/dashboard_description}}\n{{#metrics}}\n  {{#start_row}}\n  <div class=\"row-fluid\">\n  {{/start_row}}\n    <div class=\"{{span}}\" id=\"graph-{{graph_id}}\">\n      <h2>{{metric_alias}} <span class=\"pull-right graph-summary\"><span></h2>\n      <div class=\"chart\"></div>\n      <div class=\"timeline\"></div>\n      <p>{{metric_description}}</p>\n      <div class=\"legend\"></div>\n    </div>\n  {{#end_row}}\n  </div>\n  {{/end_row}}\n{{/metrics}}";
-  graph_template = "{{#dashboard_description}}\n    <div class=\"well\">{{{dashboard_description}}}\n<p>From: "+ convertedPeriodFrom.toUTCString() + " Until: " + convertedPeriodUntil.toUTCString() + "</p><a href=" + document.location.href + " target=\"_blank\">Open in new screen</a></div>\n{{/dashboard_description}}\n{{#metrics}}\n  {{#start_row}}\n  <div class=\"row-fluid\">\n  {{/start_row}}\n    <div class=\"{{span}}\" id=\"graph-{{graph_id}}\">\n      <h2>{{metric_alias}} <span class=\"pull-right graph-summary\"><span></h2>\n      <div class=\"chart\"></div>\n      <div class=\"timeline\"></div>\n      <p>{{metric_description}}</p>\n      <div class=\"legend\"></div>\n    </div>\n  {{#end_row}}\n  </div>\n  {{/end_row}}\n{{/metrics}}";
+  
+  if (periodUntil != 'now'){
+    graph_template = "{{#dashboard_description}}\n    <div class=\"well\">{{{dashboard_description}}}\n<p>From: "+ convertedPeriodFrom.toUTCString() + " Until: " + convertedPeriodUntil.toUTCString() + "</p><a href=" + document.location.href + " target=\"_blank\">Open in new screen</a></div>\n{{/dashboard_description}}\n{{#metrics}}\n  {{#start_row}}\n  <div class=\"row-fluid\">\n  {{/start_row}}\n    <div class=\"{{span}}\" id=\"graph-{{graph_id}}\">\n      <h2>{{metric_alias}} <span class=\"pull-right graph-summary\"><span></h2>\n      <div class=\"chart\"></div>\n      <div class=\"timeline\"></div>\n      <p>{{metric_description}}</p>\n      <div class=\"legend\"></div>\n    </div>\n  {{#end_row}}\n  </div>\n  {{/end_row}}\n{{/metrics}}";
+  }else{
+    graph_template = "\n<div class=\"well\">\n{{#metrics}}\n  {{#start_row}}\n  <div class=\"row-fluid\">\n  {{/start_row}}\n    <div class=\"{{span}}\" id=\"graph-{{graph_id}}\">\n      <h2>{{metric_alias}} <span class=\"pull-right graph-summary\"><span></h2>\n      <div class=\"chart\"></div>\n      <div class=\"timeline\"></div>\n      <p>{{metric_description}}</p>\n      <div class=\"legend\"></div>\n    </div>\n  {{#end_row}}\n  </div>\n  {{/end_row}}\n{{/metrics}}";
+  }
   $('#graphs').empty();
   context = {
     metrics: []
@@ -453,7 +458,7 @@ Rickshaw.Graph.JSONP.Graphite = Rickshaw.Class.create(Rickshaw.Graph.JSONP, {
     for (_i = 0, _len = events_json.length; _i < _len; _i++) {
       event = events_json[_i];
     //  this.annotator.add(event.when, "" + event.what + " " + (event.data || ''));
-    	this.annotator.add(event.when, "" + event.what + " Pipeline run: " + (event.data || '') + " App build: " + event.tags);
+      this.annotator.add(event.when, "" + event.what + " Pipeline run: " + (event.data || '') + " App build: " + event.tags);
      }
     this.annotator.update();
     if (active_annotation) {
@@ -595,12 +600,29 @@ $('.dropdown-menu').on('click', 'a', function() {
 });
 
 changeDashboard = function(dash_name) {
-  dashboard = _.where(dashboards, {
+   var metrics_temp =[];
+
+   dashboard = _.where(dashboards, {
     name: dash_name
   })[0] || dashboards[0];
   graphite_url = dashboard['graphite_url'] || default_graphite_url;
   //description = dashboard['description'];
-  metrics = dashboard['metrics'];
+  if (dash_name == 'Overview'){
+    metrics = [];
+    dashboard.name = 'Overview'
+    
+    for (i=0; i<dashboards.length; ++i){
+
+     metrics_temp =  metrics.concat(dashboards[i].metrics);
+     metrics = metrics_temp
+
+
+    }    
+  }else{
+      
+    metrics = dashboard['metrics'];
+  
+  }
   //refresh = dashboard['refresh'];
   period || (period = default_period);
   init();
@@ -680,18 +702,18 @@ $(window).bind('hashchange', function(e) {
     changeDashboard(dash);
   }
   if (periodUntil != "now")
-  	{
-	    refresh  = 10000000000000;
-	 
-	 }else{   
-	 
-	 	refresh = dashboard['refresh'];
+    {
+      refresh  = 10000000000000;
+   
+   }else{   
+   
+    refresh = dashboard['refresh'];
   
-	 }
-	 
-	 init();
-	    
-  	
+   }
+   
+   init();
+      
+    
    $.bbq.pushState({
     from: periodFrom,
     until: periodUntil,
