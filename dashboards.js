@@ -114,7 +114,7 @@ var dashboards =
 	]
   },	
     
-  { "name": "JVM Heap MB in Use",  // give your dashboard a name (required!)
+  { "name": "JVM Heap bytes in Use",  // give your dashboard a name (required!)
     "refresh": 5000,  // each dashboard has its own refresh interval (in ms)
     // add an (optional) dashboard description. description can be written in markdown / html.
     
@@ -123,8 +123,8 @@ var dashboards =
     [
   
          {
-        "alias": "JVM Heap MB in Use",
-        "target": "aliasByNode(newrelic.*.Memory_Heap_Used.used,1,2,3))",   
+        "alias": "JVM Heap bytes in Use",
+        "target": "aliasByNode(*.Tomcat.*.GC_Heap.Bytes_In_Use,2,3,4)",   
         "events": "*",  // instead of annotator, if you use the graphite events feature
                         // you can retrieve events matching specific tag(s) -- space separated
                         // or use * for all tags. Note you cannot use both annotator and events.
@@ -139,37 +139,8 @@ var dashboards =
       },
 
 	]
-  },
-
-  { "name": "GC Scavenge time percentage",  // give your dashboard a name (required!)
-    "refresh": 5000,  // each dashboard has its own refresh interval (in ms)
-    // add an (optional) dashboard description. description can be written in markdown / html.
-    
-    "description": "TIF CI metrics",
-    "metrics":  // metrics is an array of charts on the dashboard
-    [
-  
-         {
-        "alias": "GC Scavenge time percentage",
-        "target": "aliasByNode(newrelic.*.GC_PS_Scavenge.time_percentage,1,2,3))",   
-        "events": "*",  // instead of annotator, if you use the graphite events feature
-                        // you can retrieve events matching specific tag(s) -- space separated
-                        // or use * for all tags. Note you cannot use both annotator and events.
-      //"description": "Number of powerups played per type of powerup",
-        "interpolation": "cardinal",
-        "renderer": "line",
-		//"null_as": 0,
-        "colspan": 3, 
-        "scheme": "munin",  // this is a metric-specific color palette
-        "benchmarkwarning" : 0.1,
-	 "benchmarkissue" : 0.25,
-      },
-
-	]
-  },
-
-
-  { "name": "CPU",  // give your dashboard a name (required!)
+  },	
+  { "name": "CPU per node",  // give your dashboard a name (required!)
     "refresh": 5000,  // each dashboard has its own refresh interval (in ms)
     // add an (optional) dashboard description. description can be written in markdown / html.
     
@@ -178,8 +149,10 @@ var dashboards =
     [
   
 	 {
-         "alias": "CPU",              
-        "target": "aliasByNode(newrelic.*.CPU_User_Utilization.percent,1,2,3)",	   
+         "alias": "CPU per node",              
+        "target": ["averageSeries(aliasByNode(kl12c293.Tomcat.*.CPU.Processor_*.Utilization_percentage_aggregate,2,4))",
+        	     "averageSeries(aliasByNode(kl12c27x.Tomcat.*.CPU.Processor_*.Utilization_percentage_aggregate,2,4))"	   
+        	     ],	   
 
         "events": "*",  // instead of annotator, if you use the graphite events feature
                         // you can retrieve events matching specific tag(s) -- space separated
@@ -196,8 +169,7 @@ var dashboards =
 
 	]  
   },
-  	
-  { "name": "Database Average Response Times",  // give your dashboard a name (required!)
+  { "name": "ThreadPool currentThreadsBusy",  // give your dashboard a name (required!)
     "refresh": 5000,  // each dashboard has its own refresh interval (in ms)
     // add an (optional) dashboard description. description can be written in markdown / html.
     
@@ -206,8 +178,60 @@ var dashboards =
     [
   
     {
-        "alias": "Database Average Response Times",
-        "target": "aliasByNode(newrelic.*.Database_select.average_response_time,1,2,3)",   
+    "alias": "ThreadPool currentThreadsBusy",
+        "target": "aliasByNode(*.Tomcat.*.Tomcat.ThreadPool.http_bio_0_0_0_0_100*.getCurrentThreadsBusy,2,4,6)",   
+        "events": "*",  // instead of annotator, if you use the graphite events feature
+                        // you can retrieve events matching specific tag(s) -- space separated
+                        // or use * for all tags. Note you cannot use both annotator and events.
+      //"description": "Average responsetimes for all requests",
+        "interpolation": "cardinal",
+        "renderer": "line",
+		//"null_as": 0,
+        "colspan": 3, 
+        "scheme": "munin",  // this is a metric-specific color palette
+		"benchmarkwarning" : 0.1,
+		"benchmarkissue" : 0.25,
+      },
+
+	]
+  },	
+  { "name": "JDBC connectionPool numActive",  // give your dashboard a name (required!)
+    "refresh": 5000,  // each dashboard has its own refresh interval (in ms)
+    // add an (optional) dashboard description. description can be written in markdown / html.
+    
+    "description": "TIF CI metrics",
+    "metrics":  // metrics is an array of charts on the dashboard
+    [
+  
+	 {
+     "alias": "JDBC connectionPool numActive",
+        "target": "aliasByNode(*.Tomcat.*.JMX.tomcat_jdbc.class_org_apache_tomcat_jdbc_pool_DataSource.name_jdbc_cms_rest_db.type_ConnectionPool.NumActive,2,7,8)",   
+        "events": "*",  // instead of annotator, if you use the graphite events feature
+                        // you can retrieve events matching specific tag(s) -- space separated
+                        // or use * for all tags. Note you cannot use both annotator and events.
+      //"description": "Average responsetimes for all requests",
+        "interpolation": "cardinal",
+        "renderer": "line",
+		//"null_as": 0,
+        "colspan": 3, 
+        "scheme": "munin",  // this is a metric-specific color palette
+		"benchmarkwarning" : 0.1,
+		"benchmarkissue" : 0.25,
+      },
+
+	]
+  },	
+  { "name": "Oracle Backend Average Response Times",  // give your dashboard a name (required!)
+    "refresh": 5000,  // each dashboard has its own refresh interval (in ms)
+    // add an (optional) dashboard description. description can be written in markdown / html.
+    
+    "description": "TIF CI metrics",
+    "metrics":  // metrics is an array of charts on the dashboard
+    [
+  
+    {
+        "alias": "Oracle Backend Average Response Times",
+        "target": "aliasByNode(*.Tomcat.*.Backends.Oracle_DB.Average_Response_Time_ms,2,4,5)",   
         "events": "*",  // instead of annotator, if you use the graphite events feature
                         // you can retrieve events matching specific tag(s) -- space separated
                         // or use * for all tags. Note you cannot use both annotator and events.
@@ -224,7 +248,7 @@ var dashboards =
 
 	]
   },
-  { "name": "Database Calls per minute",  // give your dashboard a name (required!)
+  { "name": "Oracle Backend Responses per 15sec",  // give your dashboard a name (required!)
     "refresh": 5000,  // each dashboard has its own refresh interval (in ms)
     // add an (optional) dashboard description. description can be written in markdown / html.
     
@@ -233,8 +257,8 @@ var dashboards =
     [
   
 	 {
-        "alias": "Database Calls per minute",
-        "target": "aliasByNode(newrelic.*.Database_all.calls_per_minute,1,2,3)",   
+        "alias": "Oracle Backend Responses per 15sec",
+        "target": "aliasByNode(*.Tomcat.*.Backends.Oracle_DB.Responses_Per_Interval,2,4,5)",   
         "events": "*",  // instead of annotator, if you use the graphite events feature
                         // you can retrieve events matching specific tag(s) -- space separated
                         // or use * for all tags. Note you cannot use both annotator and events.
@@ -251,7 +275,7 @@ var dashboards =
 
 	]
   },	
-  { "name": "WebTransaction Requests per minute",  // give your dashboard a name (required!)
+  { "name": "Frontends Responses per 15 sec",  // give your dashboard a name (required!)
     "refresh": 5000,  // each dashboard has its own refresh interval (in ms)
     // add an (optional) dashboard description. description can be written in markdown / html.
     
@@ -260,8 +284,12 @@ var dashboards =
     [
   
       {
-        "alias": "WebTransaction Requests per minute",
-        "target": "aliasByNode(newrelic.*.WebTransaction.requests_per_minute,1,2,3)",   
+        "alias": "Frontends Responses per 15 sec",
+        "target": [
+                  "aliasByNode(*.Tomcat.*.Frontends.Apps.tif.Responses_Per_Interval,2,3,4,5)",   
+                  "aliasByNode(*.Tomcat.*.Frontends.Apps.content.Responses_Per_Interval,2,3,4,5)",
+                  "aliasByNode(*.Tomcat.*.Frontends.Apps.rootContext.Responses_Per_Interval,2,3,4,5)"
+                  ],        
         "events": "*",  // instead of annotator, if you use the graphite events feature
                         // you can retrieve events matching specific tag(s) -- space separated
                         // or use * for all tags. Note you cannot use both annotator and events.
@@ -278,7 +306,7 @@ var dashboards =
 
 	]
   },	
-  { "name": "WebTransaction Average Response Times",  // give your dashboard a name (required!)
+  { "name": "Frontends Average Response Times",  // give your dashboard a name (required!)
     "refresh": 5000,  // each dashboard has its own refresh interval (in ms)
     // add an (optional) dashboard description. description can be written in markdown / html.
     
@@ -287,8 +315,12 @@ var dashboards =
     [
   
       {
-        "alias": "WebTransaction Average Response Times",
-        "target": "aliasByNode(newrelic.*.WebTransaction.average_response_time,1,2,3)",   
+        "alias": "Frontends Average Response Times",
+        "target": [
+                  "aliasByNode(*.Tomcat.*.Frontends.Apps.tif.Average_Response_Time_ms,2,3,4,5)",   
+                  "aliasByNode(*.Tomcat.*.Frontends.Apps.content.Average_Response_Time_ms,2,3,4,5)",
+                  "aliasByNode(*.Tomcat.*.Frontends.Apps.rootContext.Average_Response_Time_ms,2,3,4,5)"
+                  ],
         "events": "*",  // instead of annotator, if you use the graphite events feature
                         // you can retrieve events matching specific tag(s) -- space separated
                         // or use * for all tags. Note you cannot use both annotator and events.
@@ -305,7 +337,7 @@ var dashboards =
 
 	]  
   },
-  { "name": "Errors per minute",  // give your dashboard a name (required!)
+  { "name": "Frontends Errors per 15 sec",  // give your dashboard a name (required!)
     "refresh": 5000,  // each dashboard has its own refresh interval (in ms)
     // add an (optional) dashboard description. description can be written in markdown / html.
     
@@ -314,24 +346,57 @@ var dashboards =
     [
   
       {
-        "alias": "Errors per minute",
-        "target": "aliasByNode(newrelic.*.Errors_all.errors_per_minute,1,2,3)",   
+        "alias": "Frontends Errors per 15 sec",
+        "target": [
+                  "aliasByNode(*.Tomcat.*.Frontends.Apps.tif.Errors_Per_Interval,2,3,4,5)",   
+                  "aliasByNode(*.Tomcat.*.Frontends.Apps.content.Errors_Per_Interval,2,3,4,5)",
+                  "aliasByNode(*.Tomcat.*.Frontends.Apps.rootContext.Errors_Per_Interval,2,3,4,5)"
+                  ],        
         "events": "*",  // instead of annotator, if you use the graphite events feature
                         // you can retrieve events matching specific tag(s) -- space separated
                         // or use * for all tags. Note you cannot use both annotator and events.
       //"description": "Average responsetimes for all requests",
         "interpolation": "cardinal",
         "renderer": "line",
-		//"null_as": 0,
+    //"null_as": 0,
         "colspan": 3, 
         "scheme": "munin",  // this is a metric-specific color palette
-		"benchmarkwarning" : 0.1,
-		"benchmarkissue" : 0.25,
+    "benchmarkwarning" : 0.1,
+    "benchmarkissue" : 0.25,
       },
 
 
-	]  
+  ]
   },
+  { "name": "TIF CMSCLient ehcache ObjectCount",  // give your dashboard a name (required!)
+    "refresh": 5000,  // each dashboard has its own refresh interval (in ms)
+    // add an (optional) dashboard description. description can be written in markdown / html.
+    
+    "description": "TIF CI metrics",
+    "metrics":  // metrics is an array of charts on the dashboard
+    [
+  
+      {
+        "alias": "TIF CMSCLient ehcache ObjectCount",
+        "target": "*.Tomcat.tif_a_ae1_*_server_1.JMX.net_sf_ehcache.CacheManager_tif.name_cmsClient.type_CacheStatistics.ObjectCount,2,5,7)",   
+        
+        "events": "*",  // instead of annotator, if you use the graphite events feature
+                        // you can retrieve events matching specific tag(s) -- space separated
+                        // or use * for all tags. Note you cannot use both annotator and events.
+      //"description": "Average responsetimes for all requests",
+        "interpolation": "cardinal",
+        "renderer": "line",
+    //"null_as": 0,
+        "colspan": 3, 
+        "scheme": "munin",  // this is a metric-specific color palette
+    "benchmarkwarning" : 0.1,
+    "benchmarkissue" : 0.25,
+      },
+
+
+  ]
+  },
+
   
 ];
 var scheme = [
