@@ -382,7 +382,7 @@ function showGraph(thisname,dashboardUrl,metricName,baseline,benchmark) {
 		tr[i].style.display = 'none';
 	  }
 	  
-	  if (tr[i].className.match(thisname)){
+	  if (tr[i].className.match(thisname + " ")){
 		
 			tr[i].style.display = '';
 		 
