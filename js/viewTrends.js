@@ -434,7 +434,7 @@ function showTrendGraph(thisname,dashboardUrl,metricName,startTimeTrendGraph,end
 		tr[i].style.display = 'none';
 	  }
 	  
-	  if (tr[i].className.match(thisname)){
+	  if (tr[i].className.match(thisname)+ " "){
 		
 			tr[i].style.display = '';
 		 
