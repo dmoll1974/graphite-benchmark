@@ -1,0 +1,46 @@
+<html>
+<head>
+<!-- Latest compiled and minified CSS 
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+-->
+<!-- Optional theme 
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
+-->
+
+ 	<link rel="stylesheet" href="../css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="../css/graph.css">
+    <link rel="stylesheet" href="../css/detail.css">
+    <link rel="stylesheet" href="../css/legend.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/font-awesome.css">
+    <link rel="stylesheet" href="../css/trendTable.css">
+
+<style>
+</style>
+
+<!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"> </script> -->
+<script src="../js/vendor/jquery-1.8.3.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="../js/vendor/bootstrap.min.js"></script>
+<script src="dashboards.js"></script>
+<script src="../js/viewTrends.js"></script>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+            <div id="giraffe-navbar-inner" class="navbar-inner">
+                <div class="tableheader">
+					<div class="tablesummary">Benchmark Trends</div>
+                    <div class="nav-collapse collapse" style="width=100%">
+                       	<div class="btn-toolbar pull-right">
+							<a id="backToOverview" class="btn btn-small toggle " title="Back" onClick="backToOverview();"><img src="../img/back.png" width =15px height=15px></a>
+                            <a id="ok-toggle" class="btn btn-small toggle" title="ok" onClick="toggle('ok');"><img src="../img/ok.png" width =15px height=15px></a>
+                            <a id="warning-toggle" class="btn btn-small toggle active" title="warning" onClick="toggle('warning');"><img src="../img/warning.png" width =15px height=15px></a>
+                            <a id="issue-toggle" class="btn btn-small toggle active" title="issue" onClick="toggle('issue');"><img src="../img/issue.png" width =15px height=15px></a>
+                        
+                        </div>   
+                    </div><!--/.nav-collapse -->
+                </div>
+            </div>
+        </div>
+</body>
+</html>
