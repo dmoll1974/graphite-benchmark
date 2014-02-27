@@ -114,7 +114,7 @@ var dashboards =
   ]
   },  
     
-  { "name": "JVM Heap bytes in Use",  // give your dashboard a name (required!)
+{ "name": "JVM Heap bytes in Use",  // give your dashboard a name (required!)
     "refresh": 5000,  // each dashboard has its own refresh interval (in ms)
     // add an (optional) dashboard description. description can be written in markdown / html.
     
@@ -124,7 +124,10 @@ var dashboards =
   
          {
         "alias": "JVM Heap bytes in Use",
-        "target": "aliasByNode(*.Tomcat.*.GC_Heap.Bytes_In_Use,2,3,4)",   
+        "target": [
+                    "aliasByNode(kl12c27x.Tomcat.*.GC_Heap.Bytes_In_Use,2,3,4)",   
+                    "aliasByNode(kl12c293.Tomcat.*.GC_Heap.Bytes_In_Use,2,3,4)"
+                  ],
         "events": "*",  // instead of annotator, if you use the graphite events feature
                         // you can retrieve events matching specific tag(s) -- space separated
                         // or use * for all tags. Note you cannot use both annotator and events.
@@ -150,9 +153,10 @@ var dashboards =
   
    {
          "alias": "CPU per node",              
-        "target": ["averageSeries(aliasByNode(kl12c293.Tomcat.*.CPU.Processor_*.Utilization_percentage_aggregate,2,4))",
-               "averageSeries(aliasByNode(kl12c27x.Tomcat.*.CPU.Processor_*.Utilization_percentage_aggregate,2,4))"    
-               ],    
+        "target": [
+                  "averageSeries(aliasByNode(kl12c27x.Tomcat.*.CPU.Processor_*.Utilization_percentage_aggregate,2,4))",
+                  "averageSeries(aliasByNode(kl12c293.Tomcat.*.CPU.Processor_*.Utilization_percentage_aggregate,2,4))"    
+                  ],    
 
         "events": "*",  // instead of annotator, if you use the graphite events feature
                         // you can retrieve events matching specific tag(s) -- space separated
@@ -179,7 +183,10 @@ var dashboards =
   
     {
     "alias": "ThreadPool currentThreadsBusy",
-        "target": "aliasByNode(*.Tomcat.*.Tomcat.ThreadPool.http_bio_0_0_0_0_100*.getCurrentThreadsBusy,2,4,6)",   
+        "target": [
+                  "aliasByNode(kl12c27x.Tomcat.*.Tomcat.ThreadPool.http_bio_0_0_0_0_100*.getCurrentThreadsBusy,2,4,6)",   
+                  "aliasByNode(kl12c293.Tomcat.*.Tomcat.ThreadPool.http_bio_0_0_0_0_100*.getCurrentThreadsBusy,2,4,6)"
+                  ],
         "events": "*",  // instead of annotator, if you use the graphite events feature
                         // you can retrieve events matching specific tag(s) -- space separated
                         // or use * for all tags. Note you cannot use both annotator and events.
@@ -205,7 +212,10 @@ var dashboards =
   
    {
      "alias": "JDBC connectionPool numActive",
-        "target": "aliasByNode(*.Tomcat.*.JMX.tomcat_jdbc.class_org_apache_tomcat_jdbc_pool_DataSource.name_jdbc_cms_rest_db.type_ConnectionPool.NumActive,2,7,8)",   
+        "target": [
+                  "aliasByNode(kl12c27x.Tomcat.*.JMX.tomcat_jdbc.class_org_apache_tomcat_jdbc_pool_DataSource.name_jdbc_cms_rest_db.type_ConnectionPool.NumActive,2,7,8)",   
+                  "aliasByNode(kl12c293.Tomcat.*.JMX.tomcat_jdbc.class_org_apache_tomcat_jdbc_pool_DataSource.name_jdbc_cms_rest_db.type_ConnectionPool.NumActive,2,7,8)"
+                  ],
         "events": "*",  // instead of annotator, if you use the graphite events feature
                         // you can retrieve events matching specific tag(s) -- space separated
                         // or use * for all tags. Note you cannot use both annotator and events.
@@ -231,7 +241,10 @@ var dashboards =
   
     {
         "alias": "Oracle Backend Average Response Times",
-        "target": "aliasByNode(*.Tomcat.*.Backends.Oracle_DB.Average_Response_Time_ms,2,4,5)",   
+        "target": [
+                  "aliasByNode(kl12c27x.Tomcat.*.Backends.Oracle_DB.Average_Response_Time_ms,2,4,5)",   
+                  "aliasByNode(kl12c293.Tomcat.*.Backends.Oracle_DB.Average_Response_Time_ms,2,4,5)"
+                  ],
         "events": "*",  // instead of annotator, if you use the graphite events feature
                         // you can retrieve events matching specific tag(s) -- space separated
                         // or use * for all tags. Note you cannot use both annotator and events.
@@ -258,7 +271,10 @@ var dashboards =
   
    {
         "alias": "Oracle Backend Responses per 15sec",
-        "target": "aliasByNode(*.Tomcat.*.Backends.Oracle_DB.Responses_Per_Interval,2,4,5)",   
+        "target": [
+                  "aliasByNode(kl12c27x.Tomcat.*.Backends.Oracle_DB.Responses_Per_Interval,2,4,5)",   
+                  "aliasByNode(kl12c293.Tomcat.*.Backends.Oracle_DB.Responses_Per_Interval,2,4,5)"   
+                  ],
         "events": "*",  // instead of annotator, if you use the graphite events feature
                         // you can retrieve events matching specific tag(s) -- space separated
                         // or use * for all tags. Note you cannot use both annotator and events.
@@ -286,9 +302,12 @@ var dashboards =
       {
         "alias": "Frontends Responses per 15 sec",
         "target": [
-                  "aliasByNode(*.Tomcat.*.Frontends.Apps.tif.Responses_Per_Interval,2,3,4,5)",   
-                  "aliasByNode(*.Tomcat.*.Frontends.Apps.content.Responses_Per_Interval,2,3,4,5)",
-                  "aliasByNode(*.Tomcat.*.Frontends.Apps.rootContext.Responses_Per_Interval,2,3,4,5)"
+                  "aliasByNode(kl12c27x.Tomcat.*.Frontends.Apps.tif.Responses_Per_Interval,2,3,4,5)",   
+                  "aliasByNode(kl12c27x.Tomcat.*.Frontends.Apps.content.Responses_Per_Interval,2,3,4,5)",
+                  "aliasByNode(kl12c27x.Tomcat.*.Frontends.Apps.rootContext.Responses_Per_Interval,2,3,4,5)",
+                  "aliasByNode(kl12c293.Tomcat.*.Frontends.Apps.tif.Responses_Per_Interval,2,3,4,5)",   
+                  "aliasByNode(kl12c293.Tomcat.*.Frontends.Apps.content.Responses_Per_Interval,2,3,4,5)",
+                  "aliasByNode(kl12c293.Tomcat.*.Frontends.Apps.rootContext.Responses_Per_Interval,2,3,4,5)"
                   ],        
         "events": "*",  // instead of annotator, if you use the graphite events feature
                         // you can retrieve events matching specific tag(s) -- space separated
@@ -317,9 +336,12 @@ var dashboards =
       {
         "alias": "Frontends Average Response Times",
         "target": [
-                  "aliasByNode(*.Tomcat.*.Frontends.Apps.tif.Average_Response_Time_ms,2,3,4,5)",   
-                  "aliasByNode(*.Tomcat.*.Frontends.Apps.content.Average_Response_Time_ms,2,3,4,5)",
-                  "aliasByNode(*.Tomcat.*.Frontends.Apps.rootContext.Average_Response_Time_ms,2,3,4,5)"
+                  "aliasByNode(kl12c27x.Tomcat.*.Frontends.Apps.tif.Average_Response_Time_ms,2,3,4,5)",   
+                  "aliasByNode(kl12c27x.Tomcat.*.Frontends.Apps.content.Average_Response_Time_ms,2,3,4,5)",
+                  "aliasByNode(kl12c27x.Tomcat.*.Frontends.Apps.rootContext.Average_Response_Time_ms,2,3,4,5)",
+                  "aliasByNode(kl12c293.Tomcat.*.Frontends.Apps.tif.Average_Response_Time_ms,2,3,4,5)",   
+                  "aliasByNode(kl12c293.Tomcat.*.Frontends.Apps.content.Average_Response_Time_ms,2,3,4,5)",
+                  "aliasByNode(kl12c293.Tomcat.*.Frontends.Apps.rootContext.Average_Response_Time_ms,2,3,4,5)"
                   ],
         "events": "*",  // instead of annotator, if you use the graphite events feature
                         // you can retrieve events matching specific tag(s) -- space separated
@@ -348,9 +370,12 @@ var dashboards =
       {
         "alias": "Frontends Errors per 15 sec",
         "target": [
-                  "aliasByNode(*.Tomcat.*.Frontends.Apps.tif.Errors_Per_Interval,2,3,4,5)",   
-                  "aliasByNode(*.Tomcat.*.Frontends.Apps.content.Errors_Per_Interval,2,3,4,5)",
-                  "aliasByNode(*.Tomcat.*.Frontends.Apps.rootContext.Errors_Per_Interval,2,3,4,5)"
+                  "aliasByNode(kl12c27x.Tomcat.*.Frontends.Apps.tif.Errors_Per_Interval,2,3,4,5)",   
+                  "aliasByNode(kl12c27x.Tomcat.*.Frontends.Apps.content.Errors_Per_Interval,2,3,4,5)",
+                  "aliasByNode(kl12c27x.Tomcat.*.Frontends.Apps.rootContext.Errors_Per_Interval,2,3,4,5)",
+                  "aliasByNode(kl12c293.Tomcat.*.Frontends.Apps.tif.Errors_Per_Interval,2,3,4,5)",   
+                  "aliasByNode(kl12c293.Tomcat.*.Frontends.Apps.content.Errors_Per_Interval,2,3,4,5)",
+                  "aliasByNode(kl12c293.Tomcat.*.Frontends.Apps.rootContext.Errors_Per_Interval,2,3,4,5)"
                   ],        
         "events": "*",  // instead of annotator, if you use the graphite events feature
                         // you can retrieve events matching specific tag(s) -- space separated
@@ -368,11 +393,12 @@ var dashboards =
 
   ]
   },
-  { "name": "TIF CMSCLient ehcache ObjectCount",  // give your dashboard a name (required!)
+  
+  { "name": "Miscellaneous",  // give your dashboard a name (required!)
     "refresh": 5000,  // each dashboard has its own refresh interval (in ms)
     // add an (optional) dashboard description. description can be written in markdown / html.
     
-    "description": "TIF CI metrics",
+    "description": "TIF metrics excluded from benchmark",
     "metrics":  // metrics is an array of charts on the dashboard
     [
   
@@ -393,17 +419,6 @@ var dashboards =
     "benchmarkissue" : 0.25,
       },
 
-
-  ]
-  },
-    { "name": "RequestCount",  // give your dashboard a name (required!)
-    "refresh": 5000,  // each dashboard has its own refresh interval (in ms)
-    // add an (optional) dashboard description. description can be written in markdown / html.
-    
-    "description": "TIF CI metrics",
-    "metrics":  // metrics is an array of charts on the dashboard
-    [
-  
       {
         "alias": "RequestCount",
         "target": [
@@ -427,7 +442,6 @@ var dashboards =
 
   ]
   },
-
   
 ];
 var scheme = [

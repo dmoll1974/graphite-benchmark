@@ -101,44 +101,12 @@ function getComparisonData (from, until)
 		
 		for (i=0; i<dashboards[d].metrics.length; ++i){
 		
+			if (dashboards[d].name != 'Miscellaneous'){
+
+				if (dashboards[d].metrics[i].target[0].length < 2  ){
 			
-			if (dashboards[d].metrics[i].target[0].length < 2){
-		
-			
-				var dataUrl = graphite_url + "/render?target=" + dashboards[d].metrics[i].target + "&from=" + from + "&until=" + until + "&format=json";
-				
-				
-				$.ajax({
-				  url: dataUrl,
-				  dataType: 'json',
-				  async: false,
-				  success: function(data) 
-					{
-						
-						$.each(data, function(entryIndex, entry) 
-						{
-															
-							var total = 0;
-							var count = 0;
-						
-							for (count=0; count < this.datapoints.length ; count++)
-							{
-								total = total + this.datapoints[count][0];
-							}
-						
-							outputData[j]=[dashboards[d].metrics[i].alias,this.target,Math.round((total/(count+1))*1000)/1000,dashboards[d].metrics[i].benchmarkwarning,dashboards[d].metrics[i].benchmarkissue];
-							++j;
-							
-						});
-					}
-				 });
-			}
-			else {
-			
-				for (k=0; k < dashboards[d].metrics[i].target.length ; ++k)
-				{
-				
-					var dataUrl = graphite_url + "/render?target=" + dashboards[d].metrics[i].target[k] + "&from=" + from + "&until=" + until + "&format=json";
+				debugger;
+					var dataUrl = graphite_url + "/render?target=" + dashboards[d].metrics[i].target + "&from=" + from + "&until=" + until + "&format=json";
 					
 					
 					$.ajax({
@@ -159,17 +127,51 @@ function getComparisonData (from, until)
 									total = total + this.datapoints[count][0];
 								}
 							
-								outputData[j]=[dashboards[d].metrics[i].alias,this.target,Math.round((total/(count+1))*10)/10,dashboards[d].metrics[i].benchmarkwarning,dashboards[d].metrics[i].benchmarkissue];
+								outputData[j]=[dashboards[d].metrics[i].alias,this.target,Math.round((total/(count+1))*1000)/1000,dashboards[d].metrics[i].benchmarkwarning,dashboards[d].metrics[i].benchmarkissue];
 								++j;
 								
 							});
 						}
 					 });
-				
 				}
+				else {
 				
-			}	 
+					for (k=0; k < dashboards[d].metrics[i].target.length ; ++k)
+					{
+					
+						var dataUrl = graphite_url + "/render?target=" + dashboards[d].metrics[i].target[k] + "&from=" + from + "&until=" + until + "&format=json";
+						
+						
+						$.ajax({
+						  url: dataUrl,
+						  dataType: 'json',
+						  async: false,
+						  success: function(data) 
+							{
+								
+								$.each(data, function(entryIndex, entry) 
+								{
+																	
+									var total = 0;
+									var count = 0;
+								
+									for (count=0; count < this.datapoints.length ; count++)
+									{
+										total = total + this.datapoints[count][0];
+									}
+								
+									outputData[j]=[dashboards[d].metrics[i].alias,this.target,Math.round((total/(count+1))*10)/10,dashboards[d].metrics[i].benchmarkwarning,dashboards[d].metrics[i].benchmarkissue];
+									++j;
+									
+								});
+							}
+						 });
+					
+					}
+					
+				}	 
 		
+			}
 		
 		
 		}	
