@@ -101,7 +101,7 @@ function getComparisonData (from, until)
 		
 		for (i=0; i<dashboards[d].metrics.length; ++i){
 		
-			if (dashboards[d].name != 'Miscellaneous'){
+			if (dashboards[d].metrics[i].benchmarkwarning){
 
 				if (dashboards[d].metrics[i].target[0].length < 2  ){
 			

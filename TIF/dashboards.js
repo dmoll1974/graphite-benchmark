@@ -427,7 +427,7 @@ var dashboards =
   ]
   },
   
-  { "name": "Miscellaneous",  // give your dashboard a name (required!)
+  { "name": "TIF CMSCLient ehcache ObjectCount",  // give your dashboard a name (required!)
     "refresh": 5000,  // each dashboard has its own refresh interval (in ms)
     // add an (optional) dashboard description. description can be written in markdown / html.
     
@@ -448,9 +448,19 @@ var dashboards =
     //"null_as": 0,
         "colspan": 3, 
         "scheme": "munin",  // this is a metric-specific color palette
-    "benchmarkwarning" : 0.1,
-    "benchmarkissue" : 0.25,
+   
       },
+
+    ]
+  },   
+  { "name": "RequestCount",  // give your dashboard a name (required!)
+    "refresh": 5000,  // each dashboard has its own refresh interval (in ms)
+    // add an (optional) dashboard description. description can be written in markdown / html.
+    
+    "description": "TIF metrics excluded from benchmark",
+    "metrics":  // metrics is an array of charts on the dashboard
+    [
+  
 
       {
         "alias": "RequestCount",
@@ -465,15 +475,14 @@ var dashboards =
       //"description": "Average responsetimes for all requests",
         "interpolation": "cardinal",
         "renderer": "line",
-    //"null_as": 0,
+      //"null_as": 0,
         "colspan": 3, 
         "scheme": "munin",  // this is a metric-specific color palette
-    "benchmarkwarning" : 0.1,
-    "benchmarkissue" : 0.25,
+   
       },
 
 
-  ]
+    ]
   },
   
 ];
