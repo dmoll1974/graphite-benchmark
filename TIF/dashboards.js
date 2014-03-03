@@ -27,7 +27,7 @@ var dashboards =
         "colspan": 3, 
         "scheme": "munin",  // this is a metric-specific color palette
         "benchmarkwarning" : 0.1,
-   "benchmarkissue" : 0.25,
+        "benchmarkissue" : 0.25,
 
       },
   ]  
@@ -56,9 +56,39 @@ var dashboards =
         "scheme": "munin",  // this is a metric-specific color palette
     //"max" : 1500,
         "benchmarkwarning" : 0.1,
-   "benchmarkissue" : 0.25,
+        "benchmarkissue" : 0.25,
+        "requirementValue" : 2000,
+        "requirementOperator" : "<",
       },
   ]  
+  },
+  { "name": "Percentage of failed transactions",  // give your dashboard a name (required!)
+    "refresh": 5000,  // each dashboard has its own refresh interval (in ms)
+    // add an (optional) dashboard description. description can be written in markdown / html.
+    
+    "description": "TIF CI metrics",
+    "metrics":  // metrics is an array of charts on the dashboard
+    [
+  
+     {
+
+            "alias": "Percentage of failed transactions",
+        "target": "alias(asPercent(integral(gatling.tif2.allRequests.ko.count), integral(gatling.tif2.allRequests.all.count)),\"Percentage of failed transactions\")",  
+               
+        "events": "*",  // instead of annotator, if you use the graphite events feature
+                        // you can retrieve events matching specific tag(s) -- space separated
+                        // or use * for all tags. Note you cannot use both annotator and events.
+    //    "description": "Throughput vs active users",
+        "interpolation": "cardinal",
+        "renderer": "line",
+        "colspan": 3, 
+        "scheme": "munin",  // this is a metric-specific color palette
+        "benchmarkwarning" : 0.1,
+        "benchmarkissue" : 0.25,
+        "requirementValue" : 2,
+        "requirementOperator" : "<",
+      },
+  ]
   },
   { "name": "Total Transactions per Second",  // give your dashboard a name (required!)
     "refresh": 5000,  // each dashboard has its own refresh interval (in ms)
@@ -82,7 +112,8 @@ var dashboards =
         "colspan": 3, 
         "scheme": "munin",  // this is a metric-specific color palette
         "benchmarkwarning" : 0.1,
-   "benchmarkissue" : 0.25,
+        "benchmarkissue" : 0.25,
+        
       },
   ]
   },
@@ -169,6 +200,8 @@ var dashboards =
         "scheme": "munin",  // this is a metric-specific color palette
     "benchmarkwarning" : 0.1,
     "benchmarkissue" : 0.25,
+    "requirementValue" : 40,
+    "requirementOperator" : "<",
       },
 
   ]  

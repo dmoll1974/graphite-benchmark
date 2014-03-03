@@ -1,6 +1,3 @@
-var giraffeHost = "http://172.26.168.161/giraffe/TIF_CI";
-var graphiteHost = "http://172.26.168.161:8080";
- 
  var dashboard;
  var metrics; 
  
@@ -32,7 +29,7 @@ if (baseline == "previousBuild"){
 }	
 
 	
- var eventUrl = graphiteHost + "/events/get_data?";
+ var eventUrl = graphite_url + "/events/get_data?";
  /*optional from and until*/
   
  if (getUrlVars()["from"]) eventUrl += "from="+ getUrlVars()["from"]+ "&";
@@ -104,44 +101,13 @@ function getComparisonData (from, until)
 		
 		for (i=0; i<dashboards[d].metrics.length; ++i){
 		
+			if (dashboards[d].metrics[i].requirementValue){
+
+				if (dashboards[d].metrics[i].target[0].length < 2  ){ //if only one target in metric
+
 			
-			if (dashboards[d].metrics[i].target[0].length < 2){
-		
-			
-				var dataUrl = graphiteHost + "/render?target=" + dashboards[d].metrics[i].target + "&from=" + from + "&until=" + until + "&format=json";
 				
-				
-				$.ajax({
-				  url: dataUrl,
-				  dataType: 'json',
-				  async: false,
-				  success: function(data) 
-					{
-						
-						$.each(data, function(entryIndex, entry) 
-						{
-															
-							var total = 0;
-							var count = 0;
-						
-							for (count=0; count < this.datapoints.length ; count++)
-							{
-								total = total + this.datapoints[count][0];
-							}
-						
-							outputData[j]=[dashboards[d].metrics[i].alias,this.target,Math.round((total/(count+1))*10)/10,dashboards[d].metrics[i].benchmarkwarning,dashboards[d].metrics[i].benchmarkissue];
-							++j;
-							
-						});
-					}
-				 });
-			}
-			else {
-			
-				for (k=0; k < dashboards[d].metrics[i].target.length ; ++k)
-				{
-				
-					var dataUrl = graphiteHost + "/render?target=" + dashboards[d].metrics[i].target[k] + "&from=" + from + "&until=" + until + "&format=json";
+					var dataUrl = graphite_url + "/render?target=" + dashboards[d].metrics[i].target + "&from=" + from + "&until=" + until + "&format=json";
 					
 					
 					$.ajax({
@@ -162,17 +128,51 @@ function getComparisonData (from, until)
 									total = total + this.datapoints[count][0];
 								}
 							
-								outputData[j]=[dashboards[d].metrics[i].alias,this.target,Math.round((total/(count+1))*10)/10,dashboards[d].metrics[i].benchmarkwarning,dashboards[d].metrics[i].benchmarkissue];
+								outputData[j]=[dashboards[d].metrics[i].alias,this.target,Math.round((total/(count+1))*1000)/1000,dashboards[d].metrics[i].requirementValue,dashboards[d].metrics[i].requirementOperator];
 								++j;
 								
 							});
 						}
 					 });
-				
 				}
+				else {
 				
-			}	 
+					for (k=0; k < dashboards[d].metrics[i].target.length ; ++k)
+					{
+					
+						var dataUrl = graphite_url + "/render?target=" + dashboards[d].metrics[i].target[k] + "&from=" + from + "&until=" + until + "&format=json";
+						
+						
+						$.ajax({
+						  url: dataUrl,
+						  dataType: 'json',
+						  async: false,
+						  success: function(data) 
+							{
+								
+								$.each(data, function(entryIndex, entry) 
+								{
+																	
+									var total = 0;
+									var count = 0;
+								
+									for (count=0; count < this.datapoints.length ; count++)
+									{
+										total = total + this.datapoints[count][0];
+									}
+								
+									outputData[j]=[dashboards[d].metrics[i].alias,this.target,Math.round((total/(count+1))*10)/10,dashboards[d].metrics[i].requirementValue,dashboards[d].metrics[i].requirementOperator];
+									++j;
+									
+								});
+							}
+						 });
+					
+					}
+					
+				}	 
 		
+			}
 		
 		
 		}	
@@ -182,7 +182,6 @@ function getComparisonData (from, until)
 	
 	return outputData;
 }
-
 var benchmarkSet;
 
 for (i=0;i<trendSetTableData.length;i++){	
@@ -205,21 +204,19 @@ if (trendSet.length > trendSetTableData.length){
 startTimeTrendGraph = trendSet[0][0];
 endTimeTrendGraph = trendSet[trendSet.length-1][4] + 300;
 
-var compareTable = "<div class=\"CSSTableGenerator\"><table id=\"trendTable\"><tr class=\"trendTableHeader\"><td>Dashboard</td><td>Metric</td><td>Graph</td>";
+var compareTable = "<div class=\"CSSTableGenerator\"><table id=\"trendTable\"><tr class=\"trendTableHeader\"><td>Dashboard</td><td>Metric</td><td>Requirement</td><td>Graph</td>";
 
 for (i=0;i<trendSetTableData.length;i++){	    
 	    if (i == 0){
 
-			compareTable += "<td><code class=\"baseline center\">BASELINE</code><button class=\"btn btn-default btn-xs center\" title=\"Show release notes\" onClick=\"location.href='http://kl12cfbw.is.klmcorp.net:8080/job/Pipeline-Test_C-Stage/" + trendSetTableData[i][trendSetTableData[i].length-1] + "' target='_blank'\"><img src=\"img/settings.png\" width =12px height=12px></button></br>" + trendSetTableData[i][trendSetTableData[i].length-2] + "</td>";		
+			compareTable += "<td><code class=\"baseline center\">BASELINE</code><button class=\"btn btn-default btn-xs center\" title=\"Show release notes\" onClick=\"location.href='http://kl12cfbw.is.klmcorp.net:8080/job/Pipeline-Test_C-Stage/" + trendSetTableData[i][trendSetTableData[i].length-1] + "' target='_blank'\"><img src=\"../img/settings.png\" width =12px height=12px></button></br>" + trendSetTableData[i][trendSetTableData[i].length-2] + "</td>";		
 		
 		}else{	
 			
-			compareTable += "<td><button class=\"btn btn-default btn-xs center\" title=\"Set baseline to " + trendSetTableData[i][trendSetTableData[i].length-2] + "\" onClick=\"location.href='" + giraffeHost + "/viewTrends.html?buildMatches=" + buildMatches + "&baseline=" + trendSetTableData[i][trendSetTableData[i].length-2]  + "'\"><img src=\"img/flag.png\" width =12px height=12px></button><button class=\"btn btn-default btn-xs center\" title=\"Show release notes\" onClick=\"location.href='http://kl12cfbw.is.klmcorp.net:8080/job/Pipeline-Test_C-Stage/" + trendSetTableData[i][trendSetTableData[i].length-1] + "'\"><img src=\"img/settings.png\" width =12px height=12px></button></br>" + trendSetTableData[i][trendSetTableData[i].length-2] + "</td>"; 
-		//	compareTable += "<td>" + trendSetTableData[i][trendSetTableData[i].length-2] + "<ul id=\"sddm\"><li><a href=\"#\"onmouseover=\"mopen('m1')\"onmouseout=\"mclosetime()\">Settings</a><div id=\"m1\"onmouseover=\"mcancelclosetime()\"onmouseout=\"mclosetime()\"><a onClick=\"location.href='" + giraffeHost + "/viewTrends.html?buildMatches=" + buildMatches + "&baseline=" + trendSetTableData[i][trendSetTableData[i].length-2]  + "'\">Set this build to baseline</a><a onClick=\"location.href='http://kl12cfbw.is.klmcorp.net:8080/job/Pipeline-Test_C-Stage/" + trendSetTableData[i][trendSetTableData[i].length-1] + "/'\">Build information</a></div></li></ul></td>";		
+			compareTable += "<td><button class=\"btn btn-default btn-xs center\" title=\"Set baseline to " + trendSetTableData[i][trendSetTableData[i].length-2] + "\" onClick=\"location.href='" + giraffeHost + "/viewTrends.html?buildMatches=" + buildMatches + "&baseline=" + trendSetTableData[i][trendSetTableData[i].length-2]  + "'\"><img src=\"../img/flag.png\" width =12px height=12px></button><button class=\"btn btn-default btn-xs center\" title=\"Show release notes\" onClick=\"location.href='http://kl12cfbw.is.klmcorp.net:8080/job/Pipeline-Test_C-Stage/" + trendSetTableData[i][trendSetTableData[i].length-1] + "'\"><img src=\"../img/settings.png\" width =12px height=12px></button></br>" + trendSetTableData[i][trendSetTableData[i].length-2] + "</td>"; 
 		}	
 				
 }
-
 
 
 compareTable += "</tr>"
@@ -234,38 +231,35 @@ for (i=0;i<trendSetTableData[0].length - 2 ;i++){
 				
 				++graphIndex;
 			}
-		}/*create buttons to graphs */
+		}
+		/*create buttons to graphs */
 		
 		if (trendSetTableData.length < 6 || trendSetTableData.length > 2  ){
 		
-			buttonFragment = "<button title=\"Show detailed graphs\" class=\"btn btn-default btn-xs center\"  onClick=\"showGraph('graph" + graphIndex + "','" + trendSetTableData[0][i][0] + "','" + trendSetTableData[0][i][1] + "','" + baselineBuild + "','" + benchmarkBuild +  "');\"><img src=\"img/benchmark.png\" width =10px height=10px></button>";
+			buttonFragment = "<button title=\"Show detailed graphs\" class=\"btn btn-default btn-xs center\"  onClick=\"showGraph('graph" + graphIndex + "','" + trendSetTableData[0][i][0] + "','" + trendSetTableData[0][i][1] + "','" + baselineBuild + "','" + benchmarkBuild +  "');\"><img src=\"../img/benchmark.png\" width =10px height=10px></button>";
 		}
 		if (trendSetTableData.length > 2 ){
 		
-			buttonFragment += "<button title=\"Show trend graph\" class=\"btn btn-default btn-xs  center\"  onClick=\"showTrendGraph('graph" + graphIndex + "','" + trendSetTableData[0][i][0] + "','" + trendSetTableData[0][i][1] + "','" + startTimeTrendGraph + "','" + endTimeTrendGraph +  "');\"><img src=\"img/trend.png\" width =10px height=10px></button>";
+			buttonFragment += "<button title=\"Show trend graph\" class=\"btn btn-default btn-xs  center\"  onClick=\"showTrendGraph('graph" + graphIndex + "','" + trendSetTableData[0][i][0] + "','" + trendSetTableData[0][i][1] + "','" + startTimeTrendGraph + "','" + endTimeTrendGraph +  "');\"><img src=\"../img/trend.png\" width =10px height=10px></button>";
 	
 		}
 		
+		
 	
-		compareTable += "<tr class=\"graph" + graphIndex + "\"><td>" + trendSetTableData[0][i][0] + "</td><td>"  + trendSetTableData[0][i][1] + "</td><td>" + buttonFragment + "</td>" ;
+		compareTable += "<tr class=\"graph" + graphIndex + "\"><td>" + trendSetTableData[0][i][0] + "</td><td>"  + trendSetTableData[0][i][1] + "</td><td>" +  trendSetTableData[0][i][4] + " " +  trendSetTableData[0][i][3] + "</td><td>" + buttonFragment  + "</td>";
 	
 		
 	for(var j=0; j<trendSetTableData.length ; j++){
-	    
+
 		/*set classes for cells and add buttons for warnings and issues*/
-		if (trendSetTableData[j][i][2]/trendSetTableData[0][i][2] > (1 + trendSetTableData[j][i][4]) || trendSetTableData[j][i][2]/trendSetTableData[0][i][2] < (1 - trendSetTableData[j][i][4]) ){
+		if ((trendSetTableData[j][i][4] == ">" && trendSetTableData[j][i][2] < trendSetTableData[j][i][3]) || (trendSetTableData[j][i][4] == "<" && trendSetTableData[j][i][2] > trendSetTableData[j][i][3]) ){
 		
 			tableClass = "issue";
 			//compareTable += "<td class=\"" + tableClass + "\"><code>" + trendSetTableData[j][i][2]+ "</code></td>";
 			compareTable += "<td class=\"" + tableClass + "\"><button title=\"Show detailed graph\" class=\"btn btn-default btn-xs center\"  onClick=\"showGraph('graph" + graphIndex + "','" + trendSetTableData[j][i][0] + "','" + trendSetTableData[j][i][1] + "','" + baselineBuild + "','" + benchmarkBuild +  "');\">" + trendSetTableData[j][i][2] + "</button>";
 		}
-		else if (trendSetTableData[j][i][2]/trendSetTableData[0][i][2] > (1 + trendSetTableData[j][i][3]) || trendSetTableData[j][i][2]/trendSetTableData[0][i][2] < (1 - trendSetTableData[j][i][3]) ){
-		
-			tableClass = "warning";
-			//compareTable += "<td class=\"" + tableClass + "\"><code>" + trendSetTableData[j][i][2]+ "</code></td>";
-			compareTable += "<td class=\"" + tableClass + "\"><button title=\"Show detailed graph\" class=\"btn btn-default btn-xs center\"  onClick=\"showGraph('graph" + graphIndex + "','" + trendSetTableData[j][i][0] + "','" + trendSetTableData[j][i][1] + "','" + baselineBuild + "','" + benchmarkBuild +  "');\">" + trendSetTableData[j][i][2] + "</button>";
-		}
-		else{
+		else
+		{
 		
 			tableClass = "ok";
 			compareTable += "<td class=\"" + tableClass + "\">" + trendSetTableData[j][i][2]+ "</td>";
@@ -314,9 +308,29 @@ $(window).load( function(){
 	$( "#backToOverview" ).hide();
 	document.body.appendChild(fragment);	
 	
+	var warningAndIssueCounter = 0;
+	$('table tr').each(function(){
+		
+		if  ($(this).hasClass('trendTableHeader') == false) {
+		
+			if ($(this).find('td.issue').length != 0){	
+				$(this).addClass('issue');
+				warningAndIssueCounter++;
+			}else if ($(this).find('td.warning').length != 0){
+				$(this).addClass('warning');
+				warningAndIssueCounter++;
+			}else{
+				$(this).addClass('ok');
+			}
+		}	
+    });    
 	
-	
+/*	if (warningAndIssueCounter > 0){
+	 toggle('ok');
+	}
+*/			
 });
+
 
 function removeIframes() {
 
@@ -366,7 +380,7 @@ function showGraph(thisname,dashboardUrl,metricName,baseline,benchmark) {
 		tr[i].style.display = 'none';
 	  }
 	  
-	  if (tr[i].className == thisname){
+	  if (tr[i].className.match(thisname + " ")){
 		
 			tr[i].style.display = '';
 		 
@@ -418,7 +432,7 @@ function showTrendGraph(thisname,dashboardUrl,metricName,startTimeTrendGraph,end
 		tr[i].style.display = 'none';
 	  }
 	  
-	  if (tr[i].className == thisname){
+	  if (tr[i].className.match(thisname)+ " "){
 		
 			tr[i].style.display = '';
 		 
@@ -457,17 +471,19 @@ function getUrlVars() {
 
 function toggle(thisname) {
 
-       td=document.getElementsByTagName('td')
+       tr=document.getElementsByTagName('tr')
 
-       for (i=0;i<td.length;i++){
-          if (td[i].className == thisname){
-             if ( td[i].innerHTML.style.display =='none' ){
-                td[i].innerHTML.style.display  = '';
+       for (i=0;i<tr.length;i++){
+          if (tr[i].className.match(thisname)){
+             if ( tr[i].style.display=='none' ){
+                tr[i].style.display = '';
              }
           else {
-             td[i].innerHTML.style.display =='none';
+             tr[i].style.display = 'none';
              }
           }
        }
-   
+       
+    $('table tr:visible:odd').css({"background": "lightgrey"});
+    $('table tr:visible:even').css({"background": "#ffffff"});
 }
