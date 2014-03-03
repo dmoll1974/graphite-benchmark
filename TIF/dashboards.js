@@ -185,8 +185,8 @@ var dashboards =
    {
          "alias": "CPU per node",              
         "target": [
-                  "averageSeries(aliasByNode(kl12c27x.Tomcat.*.CPU.Processor_*.Utilization_percentage_aggregate,2,4))",
-                  "averageSeries(aliasByNode(kl12c293.Tomcat.*.CPU.Processor_*.Utilization_percentage_aggregate,2,4))"    
+                  "alias(averageSeries(kl12c27x.Tomcat.*.CPU.Processor_*.Utilization_percentage_aggregate),\"kl12c27x CPU percentage used\")",
+                  "alias(averageSeries(kl12c293.Tomcat.*.CPU.Processor_*.Utilization_percentage_aggregate),\"kl12c293 CPU percentage used\")"    
                   ],    
 
         "events": "*",  // instead of annotator, if you use the graphite events feature
