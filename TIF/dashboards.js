@@ -317,8 +317,8 @@ var dashboards =
    {
      "alias": "JDBC connectionPool Percentage numActive/MaxActive",
         "target": [
-                  "alias(asPercent(kl12c27x.Tomcat.cms_rest_a_ae1_kl12c27x_server_1.JMX.tomcat_jdbc.class_org_apache_tomcat_jdbc_pool_DataSource.name_jdbc_cms_rest_db.type_ConnectionPool.NumActive, kl12c27x.Tomcat.cms_rest_a_ae1_kl12c27x_server_1.JMX.tomcat_jdbc.class_org_apache_tomcat_jdbc_pool_DataSource.name_jdbc_cms_rest_db.type_ConnectionPool.Size),\"kl12c27x Percentage numActive/MaxActive\")",  
-                  "alias(asPercent(kl12c293.Tomcat.cms_rest_a_ae1_kl12c293_server_1.JMX.tomcat_jdbc.class_org_apache_tomcat_jdbc_pool_DataSource.name_jdbc_cms_rest_db.type_ConnectionPool.NumActive, kl12c293.Tomcat.cms_rest_a_ae1_kl12c293_server_1.JMX.tomcat_jdbc.class_org_apache_tomcat_jdbc_pool_DataSource.name_jdbc_cms_rest_db.type_ConnectionPool.Size),\"kl12c293 Percentage numActive/MaxActive\")"  
+                  "alias(asPercent(kl12c27x.Tomcat.cms_rest_a_ae1_kl12c27x_server_1.JMX.tomcat_jdbc.class_org_apache_tomcat_jdbc_pool_DataSource.name_jdbc_cms_rest_db.type_ConnectionPool.NumActive, kl12c27x.Tomcat.cms_rest_a_ae1_kl12c27x_server_1.JMX.tomcat_jdbc.class_org_apache_tomcat_jdbc_pool_DataSource.name_jdbc_cms_rest_db.type_ConnectionPool.MaxActive),\"kl12c27x Percentage numActive/MaxActive\")",  
+                  "alias(asPercent(kl12c293.Tomcat.cms_rest_a_ae1_kl12c293_server_1.JMX.tomcat_jdbc.class_org_apache_tomcat_jdbc_pool_DataSource.name_jdbc_cms_rest_db.type_ConnectionPool.NumActive, kl12c293.Tomcat.cms_rest_a_ae1_kl12c293_server_1.JMX.tomcat_jdbc.class_org_apache_tomcat_jdbc_pool_DataSource.name_jdbc_cms_rest_db.type_ConnectionPool.MaxActive),\"kl12c293 Percentage numActive/MaxActive\")"  
                   ],
         "events": "*",  // instead of annotator, if you use the graphite events feature
                         // you can retrieve events matching specific tag(s) -- space separated
