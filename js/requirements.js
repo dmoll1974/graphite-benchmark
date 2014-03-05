@@ -204,7 +204,7 @@ if (trendSet.length > trendSetTableData.length){
 startTimeTrendGraph = trendSet[0][0];
 endTimeTrendGraph = trendSet[trendSet.length-1][4] + 300;
 
-var compareTable = "<div class=\"CSSTableGenerator\"><table id=\"trendTable\"><tr class=\"trendTableHeader\"><td>Dashboard</td><td>Metric</td><td>Requirement</td><td>Graph</td>";
+var compareTable = "<div class=\"CSSTableGenerator\"><table id=\"trendTable\"><tr class=\"trendTableHeader\"><td>Metric</td><td>Counter</td><td>Requirement</td><td>Graph</td>";
 
 for (i=0;i<trendSetTableData.length;i++){	    
 	    if (i == 0){
