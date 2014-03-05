@@ -169,7 +169,43 @@ var dashboards =
         "colspan": 3, 
         "scheme": "munin",  // this is a metric-specific color palette
         "benchmarkwarning" : 0.1,
-   "benchmarkissue" : 0.25,
+        "benchmarkissue" : 0.25,
+       },
+
+  ]
+  },  
+  { "name": "Percentage of MaxHeap in use",  // give your dashboard a name (required!)
+    "refresh": 5000,  // each dashboard has its own refresh interval (in ms)
+    // add an (optional) dashboard description. description can be written in markdown / html.
+    
+    "description": "TIF CI metrics",
+    "metrics":  // metrics is an array of charts on the dashboard
+    [
+  
+         {
+        "alias": "Percentage of MaxHeap in use",
+        "target": [
+                    "alias(asPercent(kl12c27x.Tomcat.cms_rest_a_ae1_kl12c27x_server_1.GC_Heap.Bytes_In_Use, kl12c27x.Tomcat.cms_rest_a_ae1_kl12c27x_server_1.GC_Heap.Bytes_Total),\"kl12c27x cms_rest Percentage Heap in Use/Total Heap\")",  
+                    "alias(asPercent(kl12c293.Tomcat.cms_rest_a_ae1_kl12c293_server_1.GC_Heap.Bytes_In_Use, kl12c293.Tomcat.cms_rest_a_ae1_kl12c293_server_1.GC_Heap.Bytes_Total),\"kl12c293 cms_rest Percentage Heap in Use/Total Heap\")",
+                    "alias(asPercent(kl12c27x.Tomcat.tif_a_ae1_kl12c27x_server_1.GC_Heap.Bytes_In_Use, kl12c27x.Tomcat.tif_a_ae1_kl12c27x_server_1.GC_Heap.Bytes_Total),\"kl12c27x tif Percentage Heap in Use/Total Heap\")",  
+                    "alias(asPercent(kl12c293.Tomcat.tif_a_ae1_kl12c293_server_1.GC_Heap.Bytes_In_Use, kl12c293.Tomcat.tif_a_ae1_kl12c293_server_1.GC_Heap.Bytes_Total),\"kl12c293 tif Percentage Heap in Use/Total Heap\")",  
+                    "alias(asPercent(kl12c27x.Tomcat.mosaic_a_ae1_kl12c27x_server_1.GC_Heap.Bytes_In_Use, kl12c27x.Tomcat.mosaic_a_ae1_kl12c27x_server_1.GC_Heap.Bytes_Total),\"kl12c27x mosaic Percentage Heap in Use/Total Heap\")",  
+                    "alias(asPercent(kl12c293.Tomcat.mosaic_a_ae1_kl12c293_server_1.GC_Heap.Bytes_In_Use, kl12c293.Tomcat.mosaic_a_ae1_kl12c293_server_1.GC_Heap.Bytes_Total),\"kl12c293 mosaic Percentage Heap in Use/Total Heap\")",  
+                    
+                  ],
+        "events": "*",  // instead of annotator, if you use the graphite events feature
+                        // you can retrieve events matching specific tag(s) -- space separated
+                        // or use * for all tags. Note you cannot use both annotator and events.
+      //"description": "Number of powerups played per type of powerup",
+        "interpolation": "cardinal",
+        "renderer": "line",
+    //"null_as": 0,
+        "colspan": 3, 
+        "scheme": "munin",  // this is a metric-specific color palette
+        "benchmarkwarning" : 0.1,
+        "benchmarkissue" : 0.25,
+        "requirementValue" : 90,
+        "requirementOperator" : "<",
       },
 
   ]
@@ -234,8 +270,8 @@ var dashboards =
       },
 
   ]
-  },  
-  { "name": "JDBC connectionPool numActive",  // give your dashboard a name (required!)
+  },
+  { "name": "Percentage ThreadPool currentThreadsBusy/MaxThreads",  // give your dashboard a name (required!)
     "refresh": 5000,  // each dashboard has its own refresh interval (in ms)
     // add an (optional) dashboard description. description can be written in markdown / html.
     
@@ -243,11 +279,15 @@ var dashboards =
     "metrics":  // metrics is an array of charts on the dashboard
     [
   
-   {
-     "alias": "JDBC connectionPool numActive",
+    {
+    "alias": "Percentage ThreadPool currentThreadsBusy/MaxThreads",
         "target": [
-                  "aliasByNode(kl12c27x.Tomcat.*.JMX.tomcat_jdbc.class_org_apache_tomcat_jdbc_pool_DataSource.name_jdbc_cms_rest_db.type_ConnectionPool.NumActive,2,7,8)",   
-                  "aliasByNode(kl12c293.Tomcat.*.JMX.tomcat_jdbc.class_org_apache_tomcat_jdbc_pool_DataSource.name_jdbc_cms_rest_db.type_ConnectionPool.NumActive,2,7,8)"
+                  "alias(asPercent(kl12c27x.Tomcat.cms_rest_a_ae1_kl12c27x_server_1.Tomcat.ThreadPool.http_bio_0_0_0_0_100*.getCurrentThreadsBusy,200),\"kl12c27x cms_rest Percentage CurrentThreadsBusy/MaxThreads\")",   
+                  "alias(asPercent(kl12c293.Tomcat.cms_rest_a_ae1_kl12c27x_server_1.Tomcat.ThreadPool.http_bio_0_0_0_0_100*.getCurrentThreadsBusy,200),\"kl12c293 cms_rest Percentage CurrentThreadsBusy/MaxThreads\")",   
+                  "alias(asPercent(kl12c27x.Tomcat.tif_a_ae1_kl12c27x_server_1.Tomcat.ThreadPool.http_bio_0_0_0_0_100*.getCurrentThreadsBusy,200),\"kl12c27x tif Percentage CurrentThreadsBusy/MaxThreads\")",   
+                  "alias(asPercent(kl12c293.Tomcat.tif_a_ae1_kl12c27x_server_1.Tomcat.ThreadPool.http_bio_0_0_0_0_100*.getCurrentThreadsBusy,200),\"kl12c293 tif Percentage CurrentThreadsBusy/MaxThreads\")",   
+                  "alias(asPercent(kl12c27x.Tomcat.mosaic_a_ae1_kl12c27x_server_1.Tomcat.ThreadPool.http_bio_0_0_0_0_100*.getCurrentThreadsBusy,200),\"kl12c27x mosaic Percentage CurrentThreadsBusy/MaxThreads\")",   
+                  "alias(asPercent(kl12c293.Tomcat.mosaic_a_ae1_kl12c27x_server_1.Tomcat.ThreadPool.http_bio_0_0_0_0_100*.getCurrentThreadsBusy,200),\"kl12c293 mosaic Percentage CurrentThreadsBusy/MaxThreads\")",   
                   ],
         "events": "*",  // instead of annotator, if you use the graphite events feature
                         // you can retrieve events matching specific tag(s) -- space separated
@@ -258,9 +298,42 @@ var dashboards =
     //"null_as": 0,
         "colspan": 3, 
         "scheme": "munin",  // this is a metric-specific color palette
-    "benchmarkwarning" : 0.1,
-    "benchmarkissue" : 0.25,
+        "benchmarkwarning" : 0.1,
+        "benchmarkissue" : 0.25,
+        "requirementValue" : 25,
+        "requirementOperator" : "<",
       },
+
+  ]
+  },  
+  { "name": "JDBC connectionPool Percentage numActive/MaxActive",  // give your dashboard a name (required!)
+    "refresh": 5000,  // each dashboard has its own refresh interval (in ms)
+    // add an (optional) dashboard description. description can be written in markdown / html.
+    
+    "description": "TIF CI metrics",
+    "metrics":  // metrics is an array of charts on the dashboard
+    [
+  
+   {
+     "alias": "JDBC connectionPool Percentage numActive/MaxActive",
+        "target": [
+                  "alias(asPercent(kl12c27x.Tomcat.cms_rest_a_ae1_kl12c27x_server_1.JMX.tomcat_jdbc.class_org_apache_tomcat_jdbc_pool_DataSource.name_jdbc_cms_rest_db.type_ConnectionPool.NumActive, kl12c27x.Tomcat.cms_rest_a_ae1_kl12c27x_server_1.JMX.tomcat_jdbc.class_org_apache_tomcat_jdbc_pool_DataSource.name_jdbc_cms_rest_db.type_ConnectionPool.Size),\"kl12c27x Percentage numActive/MaxActive\")",  
+                  "alias(asPercent(kl12c293.Tomcat.cms_rest_a_ae1_kl12c293_server_1.JMX.tomcat_jdbc.class_org_apache_tomcat_jdbc_pool_DataSource.name_jdbc_cms_rest_db.type_ConnectionPool.NumActive, kl12c293.Tomcat.cms_rest_a_ae1_kl12c293_server_1.JMX.tomcat_jdbc.class_org_apache_tomcat_jdbc_pool_DataSource.name_jdbc_cms_rest_db.type_ConnectionPool.Size),\"kl12c293 Percentage numActive/MaxActive\")"  
+                  ],
+        "events": "*",  // instead of annotator, if you use the graphite events feature
+                        // you can retrieve events matching specific tag(s) -- space separated
+                        // or use * for all tags. Note you cannot use both annotator and events.
+      //"description": "Average responsetimes for all requests",
+        "interpolation": "cardinal",
+        "renderer": "line",
+    //"null_as": 0,
+        "colspan": 3, 
+        "scheme": "munin",  // this is a metric-specific color palette
+        "benchmarkwarning" : 0.1,
+        "benchmarkissue" : 0.25,
+        "requirementValue" : 25,
+        "requirementOperator" : "<",
+    },
 
   ]
   },  
