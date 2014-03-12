@@ -30,6 +30,37 @@ var dashboards =
         "benchmarkissue" : 0.25,
 
       },
+    ]  
+  },   
+
+  { "name": "Number of visits",  // give your dashboard a name (required!)
+    "refresh": 5000,  // each dashboard has its own refresh interval (in ms)
+    // add an (optional) dashboard description. description can be written in markdown / html.
+    
+    "description": "TIF CI metrics",
+    "metrics":  // metrics is an array of charts on the dashboard
+    [
+  
+     {
+
+        "alias": "Number of visits",
+        "target": "alias(gatling.tif2.TIF_homepage.Mosaic.ok.count,\"Visits per second\")   ",  
+                
+        "events": "*",  // instead of annotator, if you use the graphite events feature
+                        // you can retrieve events matching specific tag(s) -- space separated
+                        // or use * for all tags. Note you cannot use both annotator and events.
+      //  "description": "Throughput vs active users",
+        "interpolation": "cardinal",
+        "renderer": "line",
+        "colspan": 3, 
+        "scheme": "munin",  // this is a metric-specific color palette
+        "benchmarkwarning" : 0.1,
+        "benchmarkissue" : 0.25,
+        "requirementValue" : 0.13,
+        "requirementOperator" : ">",
+
+      },
+
   ]  
   },
   { "name": "Transaction Response Times 95 percentile",  // give your dashboard a name (required!)
