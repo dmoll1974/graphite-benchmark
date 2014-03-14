@@ -105,7 +105,6 @@ function getComparisonData (from, until)
 
 				if (dashboards[d].metrics[i].target[0].length < 2  ){
 			
-				debugger;
 					var dataUrl = graphite_url + "/render?target=" + dashboards[d].metrics[i].target + "&from=" + from + "&until=" + until + "&format=json";
 					
 					
@@ -126,7 +125,7 @@ function getComparisonData (from, until)
 								{
 									total = total + this.datapoints[count][0];
 								}
-							
+							debugger;
 								outputData[j]=[dashboards[d].metrics[i].alias,this.target,Math.round((total/(count+1))*1000)/1000,dashboards[d].metrics[i].benchmarkwarning,dashboards[d].metrics[i].benchmarkissue];
 								++j;
 								

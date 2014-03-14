@@ -44,7 +44,7 @@ var dashboards =
      {
 
         "alias": "Number of visits",
-        "target": "alias(gatling.tif2.TIF_homepage.Mosaic.ok.count,\"Visits per second\")   ",  
+        "target": "alias(gatling.tif2.TIF_SearchPage_Mosaic.ok.count,\"Visits per second\")   ",  
                 
         "events": "*",  // instead of annotator, if you use the graphite events feature
                         // you can retrieve events matching specific tag(s) -- space separated
@@ -74,8 +74,7 @@ var dashboards =
      {
 
     "alias": "Transaction Response Times 95 percentile",
-        "target": ["aliasByNode(gatling.tif2.*.*.ok.percentiles95,2,3)", 
-          "aliasByNode(gatling.tif2.*.ok.percentiles95,2)"],
+        "target": "aliasByNode(gatling.tif2.*.ok.percentiles95,2)",
     
         "events": "*",  // instead of annotator, if you use the graphite events feature
                         // you can retrieve events matching specific tag(s) -- space separated
@@ -121,6 +120,7 @@ var dashboards =
       },
   ]
   },
+  
   { "name": "Total Transactions per Second",  // give your dashboard a name (required!)
     "refresh": 5000,  // each dashboard has its own refresh interval (in ms)
     // add an (optional) dashboard description. description can be written in markdown / html.
@@ -159,8 +159,7 @@ var dashboards =
      {
 
          "alias": "Transactions per Second",
-        "target":["aliasByNode(gatling.tif2.*.*.ok.count,2,3)", 
-          "aliasByNode(gatling.tif2.*.ok.count,2)"],
+        "target": "aliasByNode(gatling.tif2.*.ok.count,2)",
       
         "events": "*",  // instead of annotator, if you use the graphite events feature
                         // you can retrieve events matching specific tag(s) -- space separated
