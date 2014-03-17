@@ -209,7 +209,7 @@ var compareTable = "<div class=\"CSSTableGenerator\"><table id=\"trendTable\"><t
 for (i=0;i<trendSetTableData.length;i++){	    
 	    if (i == 0){
 
-			compareTable += "<td><code class=\"baseline center\">BASELINE</code><button class=\"btn btn-default btn-xs center\" title=\"Show release notes\" onClick=\"location.href='http://kl12cfbw.is.klmcorp.net:8080/job/Pipeline-Test_C-Stage/" + trendSetTableData[i][trendSetTableData[i].length-1] + "' target='_blank'\"><img src=\"../img/settings.png\" width =12px height=12px></button></br>" + trendSetTableData[i][trendSetTableData[i].length-2] + "</td>";		
+			compareTable += "<td><code class=\"baseline center\">BASELINE</code><button class=\"btn btn-default btn-xs center\" title=\"Show release notes\" onClick=\"location.href='http://bamboo.eden.klm.com/browse/TIF-PANIC-" + trendSetTableData[i][trendSetTableData[i].length-1] + "' target='_blank'\"><img src=\"../img/settings.png\" width =12px height=12px></button></br>" + trendSetTableData[i][trendSetTableData[i].length-2] + "</td>";		
 		
 		}else{	
 			
