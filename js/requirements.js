@@ -213,7 +213,7 @@ for (i=0;i<trendSetTableData.length;i++){
 		
 		}else{	
 			
-			compareTable += "<td><button class=\"btn btn-default btn-xs center\" title=\"Set baseline to " + trendSetTableData[i][trendSetTableData[i].length-2] + "\" onClick=\"location.href='" + giraffeHost + "/viewTrends.html?buildMatches=" + buildMatches + "&baseline=" + trendSetTableData[i][trendSetTableData[i].length-2]  + "'\"><img src=\"../img/flag.png\" width =12px height=12px></button><button class=\"btn btn-default btn-xs center\" title=\"Show release notes\" onClick=\"location.href='http://kl12cfbw.is.klmcorp.net:8080/job/Pipeline-Test_C-Stage/" + trendSetTableData[i][trendSetTableData[i].length-1] + "'\"><img src=\"../img/settings.png\" width =12px height=12px></button></br>" + trendSetTableData[i][trendSetTableData[i].length-2] + "</td>"; 
+			compareTable += "<td><button class=\"btn btn-default btn-xs center\" title=\"Set baseline to " + trendSetTableData[i][trendSetTableData[i].length-2] + "\" onClick=\"location.href='" + giraffeHost + "/viewTrends.html?buildMatches=" + buildMatches + "&baseline=" + trendSetTableData[i][trendSetTableData[i].length-2]  + "'\"><img src=\"../img/flag.png\" width =12px height=12px></button><button class=\"btn btn-default btn-xs center\" title=\"Show release notes\" onClick=\"location.href='http://bamboo.eden.klm.com/browse/TIF-PANIC-" + trendSetTableData[i][trendSetTableData[i].length-1] + "'\"><img src=\"../img/settings.png\" width =12px height=12px></button></br>" + trendSetTableData[i][trendSetTableData[i].length-2] + "</td>"; 
 		}	
 				
 }
