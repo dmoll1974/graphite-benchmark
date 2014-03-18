@@ -121,11 +121,16 @@ function getComparisonData (from, until)
 								var total = 0;
 								var count = 0;
 							
-								for (count=0; count < this.datapoints.length ; count++)
-								{
-									total = total + this.datapoints[count][0];
+								for(p=0;p<this.datapoints.length;p++){
+							
+										if(this.datapoints[p][0] != null){
+
+											count++;
+											total += this.datapoints[p][0]
+
+										}
 								}
-							debugger;
+
 								outputData[j]=[dashboards[d].metrics[i].alias,this.target,Math.round((total/(count+1))*1000)/1000,dashboards[d].metrics[i].benchmarkwarning,dashboards[d].metrics[i].benchmarkissue];
 								++j;
 								
@@ -154,10 +159,15 @@ function getComparisonData (from, until)
 									var total = 0;
 									var count = 0;
 								
-									for (count=0; count < this.datapoints.length ; count++)
-									{
-										total = total + this.datapoints[count][0];
-									}
+									for(p=0;p<this.datapoints.length;p++){
+							
+										if(this.datapoints[p][0] != null){
+
+											count++;
+											total += this.datapoints[p][0]
+
+										}
+								}
 								
 									outputData[j]=[dashboards[d].metrics[i].alias,this.target,Math.round((total/(count+1))*10)/10,dashboards[d].metrics[i].benchmarkwarning,dashboards[d].metrics[i].benchmarkissue];
 									++j;
@@ -250,13 +260,14 @@ for (i=0;i<trendSetTableData[0].length - 2 ;i++){
 	for(var j=0; j<trendSetTableData.length ; j++){
 	    
 		/*set classes for cells and add buttons for warnings and issues*/
-		if (trendSetTableData[j][i][2]/trendSetTableData[0][i][2] > (1 + trendSetTableData[j][i][4]) || trendSetTableData[j][i][2]/trendSetTableData[0][i][2] < (1 - trendSetTableData[j][i][4]) ){
-		
+
+		if ((trendSetTableData[j][i][4] > 0 && trendSetTableData[j][i][2]/trendSetTableData[0][i][2] > (1 + trendSetTableData[j][i][4])) || (trendSetTableData[j][i][4] < 0 && trendSetTableData[j][i][2]/trendSetTableData[0][i][2] < (1 + trendSetTableData[j][i][4]))){
+	
 			tableClass = "issue";
 			//compareTable += "<td class=\"" + tableClass + "\"><code>" + trendSetTableData[j][i][2]+ "</code></td>";
 			compareTable += "<td class=\"" + tableClass + "\"><button title=\"Show detailed graph\" class=\"btn btn-default btn-xs center\"  onClick=\"showGraph('graph" + graphIndex + "','" + trendSetTableData[j][i][0] + "','" + trendSetTableData[j][i][1] + "','" + baselineBuild + "','" + benchmarkBuild +  "');\">" + trendSetTableData[j][i][2] + "</button>";
 		}
-		else if (trendSetTableData[j][i][2]/trendSetTableData[0][i][2] > (1 + trendSetTableData[j][i][3]) || trendSetTableData[j][i][2]/trendSetTableData[0][i][2] < (1 - trendSetTableData[j][i][3]) ){
+		else if ((trendSetTableData[j][i][3] > 0 && trendSetTableData[j][i][2]/trendSetTableData[0][i][2] > (1 + trendSetTableData[j][i][3]) )|| (trendSetTableData[j][i][3] < 0 && trendSetTableData[j][i][2]/trendSetTableData[0][i][2] < (1 + trendSetTableData[j][i][3]))){
 		
 			tableClass = "warning";
 			//compareTable += "<td class=\"" + tableClass + "\"><code>" + trendSetTableData[j][i][2]+ "</code></td>";

@@ -123,12 +123,18 @@ function getComparisonData (from, until)
 								var total = 0;
 								var count = 0;
 							
-								for (count=0; count < this.datapoints.length ; count++)
-								{
-									total = total + this.datapoints[count][0];
-								}
+								for(p=0;p<this.datapoints.length;p++){
 							
-								outputData[j]=[dashboards[d].metrics[i].alias,this.target,Math.round((total/(count+1))*1000)/1000,dashboards[d].metrics[i].requirementValue,dashboards[d].metrics[i].requirementOperator];
+										if(this.datapoints[p][0] != null){
+
+											count++;
+											total += this.datapoints[p][0]
+
+										}
+								}
+								
+							
+								outputData[j]=[dashboards[d].metrics[i].alias,this.target,Math.round((total/count)*1000)/1000,dashboards[d].metrics[i].requirementValue,dashboards[d].metrics[i].requirementOperator];
 								++j;
 								
 							});
@@ -156,12 +162,17 @@ function getComparisonData (from, until)
 									var total = 0;
 									var count = 0;
 								
-									for (count=0; count < this.datapoints.length ; count++)
-									{
-										total = total + this.datapoints[count][0];
+									for(p=0;p<this.datapoints.length;p++){
+							
+										if(this.datapoints[p][0] != null){
+
+											count++;
+											total += this.datapoints[p][0]
+
+										}
 									}
 								
-									outputData[j]=[dashboards[d].metrics[i].alias,this.target,Math.round((total/(count+1))*10)/10,dashboards[d].metrics[i].requirementValue,dashboards[d].metrics[i].requirementOperator];
+									outputData[j]=[dashboards[d].metrics[i].alias,this.target,Math.round((total/count)*1000)/1000,dashboards[d].metrics[i].requirementValue,dashboards[d].metrics[i].requirementOperator];
 									++j;
 									
 								});

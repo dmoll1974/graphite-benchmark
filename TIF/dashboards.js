@@ -26,8 +26,8 @@ var dashboards =
         "renderer": "line",
         "colspan": 3, 
         "scheme": "munin",  // this is a metric-specific color palette
-        "benchmarkwarning" : 0.1,
-        "benchmarkissue" : 0.25,
+        "benchmarkwarning" : -0.1,
+        "benchmarkissue" : -0.25,
 
       },
     ]  
@@ -54,8 +54,8 @@ var dashboards =
         "renderer": "line",
         "colspan": 3, 
         "scheme": "munin",  // this is a metric-specific color palette
-        "benchmarkwarning" : 0.1,
-        "benchmarkissue" : 0.25,
+        "benchmarkwarning" : -0.1,
+        "benchmarkissue" : -0.25,
         "requirementValue" : 0.13,
         "requirementOperator" : ">",
 
@@ -121,7 +121,7 @@ var dashboards =
   ]
   },
   
-  { "name": "Total Transactions per Second",  // give your dashboard a name (required!)
+  { "name": "Passed Transactions per Second",  // give your dashboard a name (required!)
     "refresh": 5000,  // each dashboard has its own refresh interval (in ms)
     // add an (optional) dashboard description. description can be written in markdown / html.
     
@@ -131,9 +131,35 @@ var dashboards =
   
      {
 
-            "alias": "Total Transactions per Second",
-        "target": ["gatling.tif2.allRequests.ok.count",  
-                    "gatling.tif2.allRequests.ko.count"],   
+            "alias": "Passed Transactions per Second",
+        "target": "gatling.tif2.allRequests.ok.count",  
+                  
+        "events": "*",  // instead of annotator, if you use the graphite events feature
+                        // you can retrieve events matching specific tag(s) -- space separated
+                        // or use * for all tags. Note you cannot use both annotator and events.
+    //    "description": "Throughput vs active users",
+        "interpolation": "cardinal",
+        "renderer": "line",
+        "colspan": 3, 
+        "scheme": "munin",  // this is a metric-specific color palette
+        "benchmarkwarning" : -0.1,
+        "benchmarkissue" : -0.25,
+        
+      },
+  ]
+  },
+  { "name": "Failed Transactions per Second",  // give your dashboard a name (required!)
+    "refresh": 5000,  // each dashboard has its own refresh interval (in ms)
+    // add an (optional) dashboard description. description can be written in markdown / html.
+    
+    "description": "TIF CI metrics",
+    "metrics":  // metrics is an array of charts on the dashboard
+    [
+  
+     {
+
+            "alias": "Failed Transactions per Second",
+        "target": "gatling.tif2.allRequests.ko.count",   
         "events": "*",  // instead of annotator, if you use the graphite events feature
                         // you can retrieve events matching specific tag(s) -- space separated
                         // or use * for all tags. Note you cannot use both annotator and events.
@@ -169,8 +195,8 @@ var dashboards =
         "renderer": "line",
         "colspan": 3, 
         "scheme": "munin",  // this is a metric-specific color palette
-        "benchmarkwarning" : 0.1,
-   "benchmarkissue" : 0.25,
+        "benchmarkwarning" : -0.1,
+   "benchmarkissue" : -0.25,
       },
   ]
   },  
@@ -454,8 +480,8 @@ var dashboards =
     //"null_as": 0,
         "colspan": 3, 
         "scheme": "munin",  // this is a metric-specific color palette
-    "benchmarkwarning" : 0.1,
-    "benchmarkissue" : 0.25,
+    "benchmarkwarning" : -0.1,
+    "benchmarkissue" : -0.25,
       },
 
 
