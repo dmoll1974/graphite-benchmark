@@ -212,8 +212,8 @@ var dashboards =
          {
         "alias": "JVM Heap bytes in Use",
         "target": [
-                    "aliasByNode(kl12c27x.Tomcat.*.GC_Heap.Bytes_In_Use,2,3,4)",   
-                    "aliasByNode(kl12c293.Tomcat.*.GC_Heap.Bytes_In_Use,2,3,4)"
+                    "aliasByNode(kl12c2di.Tomcat.*.GC_Heap.Bytes_In_Use,2,3,4)",   
+                    "aliasByNode(kl12c2bc.Tomcat.*.GC_Heap.Bytes_In_Use,2,3,4)"
                   ],
         "events": "*",  // instead of annotator, if you use the graphite events feature
                         // you can retrieve events matching specific tag(s) -- space separated
@@ -241,12 +241,12 @@ var dashboards =
          {
         "alias": "Percentage of MaxHeap in use",
         "target": [
-                    "alias(asPercent(kl12c27x.Tomcat.cms_rest_a_ae1_kl12c27x_server_1.GC_Heap.Bytes_In_Use, kl12c27x.Tomcat.cms_rest_a_ae1_kl12c27x_server_1.GC_Heap.Bytes_Total),\"kl12c27x cms_rest Percentage Heap in Use/Total Heap\")",  
-                    "alias(asPercent(kl12c293.Tomcat.cms_rest_a_ae1_kl12c293_server_1.GC_Heap.Bytes_In_Use, kl12c293.Tomcat.cms_rest_a_ae1_kl12c293_server_1.GC_Heap.Bytes_Total),\"kl12c293 cms_rest Percentage Heap in Use/Total Heap\")",
-                    "alias(asPercent(kl12c27x.Tomcat.tif_a_ae1_kl12c27x_server_1.GC_Heap.Bytes_In_Use, kl12c27x.Tomcat.tif_a_ae1_kl12c27x_server_1.GC_Heap.Bytes_Total),\"kl12c27x tif Percentage Heap in Use/Total Heap\")",  
-                    "alias(asPercent(kl12c293.Tomcat.tif_a_ae1_kl12c293_server_1.GC_Heap.Bytes_In_Use, kl12c293.Tomcat.tif_a_ae1_kl12c293_server_1.GC_Heap.Bytes_Total),\"kl12c293 tif Percentage Heap in Use/Total Heap\")",  
-                    "alias(asPercent(kl12c27x.Tomcat.mosaic_a_ae1_kl12c27x_server_1.GC_Heap.Bytes_In_Use, kl12c27x.Tomcat.mosaic_a_ae1_kl12c27x_server_1.GC_Heap.Bytes_Total),\"kl12c27x mosaic Percentage Heap in Use/Total Heap\")",  
-                    "alias(asPercent(kl12c293.Tomcat.mosaic_a_ae1_kl12c293_server_1.GC_Heap.Bytes_In_Use, kl12c293.Tomcat.mosaic_a_ae1_kl12c293_server_1.GC_Heap.Bytes_Total),\"kl12c293 mosaic Percentage Heap in Use/Total Heap\")",  
+                    "alias(asPercent(kl12c2di.Tomcat.cms_rest_a_ae3_kl12c2di_server_1.GC_Heap.Bytes_In_Use, kl12c2di.Tomcat.cms_rest_a_ae3_kl12c2di_server_1.GC_Heap.Bytes_Total),\"kl12c2di cms_rest Percentage Heap in Use/Total Heap\")",  
+                    "alias(asPercent(kl12c2bc.Tomcat.cms_rest_a_ae3_kl12c2bc_server_1.GC_Heap.Bytes_In_Use, kl12c2bc.Tomcat.cms_rest_a_ae3_kl12c2bc_server_1.GC_Heap.Bytes_Total),\"kl12c2bc cms_rest Percentage Heap in Use/Total Heap\")",
+                    "alias(asPercent(kl12c2di.Tomcat.tif_a_ae3_kl12c2di_server_1.GC_Heap.Bytes_In_Use, kl12c2di.Tomcat.tif_a_ae3_kl12c2di_server_1.GC_Heap.Bytes_Total),\"kl12c2di tif Percentage Heap in Use/Total Heap\")",  
+                    "alias(asPercent(kl12c2bc.Tomcat.tif_a_ae3_kl12c2bc_server_1.GC_Heap.Bytes_In_Use, kl12c2bc.Tomcat.tif_a_ae3_kl12c2bc_server_1.GC_Heap.Bytes_Total),\"kl12c2bc tif Percentage Heap in Use/Total Heap\")",  
+                    "alias(asPercent(kl12c2di.Tomcat.mosaic_a_ae3_kl12c2di_server_1.GC_Heap.Bytes_In_Use, kl12c2di.Tomcat.mosaic_a_ae3_kl12c2di_server_1.GC_Heap.Bytes_Total),\"kl12c2di mosaic Percentage Heap in Use/Total Heap\")",  
+                    "alias(asPercent(kl12c2bc.Tomcat.mosaic_a_ae3_kl12c2bc_server_1.GC_Heap.Bytes_In_Use, kl12c2bc.Tomcat.mosaic_a_ae3_kl12c2bc_server_1.GC_Heap.Bytes_Total),\"kl12c2bc mosaic Percentage Heap in Use/Total Heap\")",  
                     
                   ],
         "events": "*",  // instead of annotator, if you use the graphite events feature
@@ -277,8 +277,8 @@ var dashboards =
    {
          "alias": "CPU per node",              
         "target": [
-                  "alias(averageSeries(kl12c27x.Tomcat.*.CPU.Processor_*.Utilization_percentage_aggregate),\"kl12c27x CPU percentage used\")",
-                  "alias(averageSeries(kl12c293.Tomcat.*.CPU.Processor_*.Utilization_percentage_aggregate),\"kl12c293 CPU percentage used\")"    
+                  "alias(averageSeries(kl12c2di.Tomcat.*.CPU.Processor_*.Utilization_percentage_aggregate),\"kl12c2di CPU percentage used\")",
+                  "alias(averageSeries(kl12c2bc.Tomcat.*.CPU.Processor_*.Utilization_percentage_aggregate),\"kl12c2bc CPU percentage used\")"    
                   ],    
 
         "events": "*",  // instead of annotator, if you use the graphite events feature
@@ -309,8 +309,8 @@ var dashboards =
     {
     "alias": "ThreadPool currentThreadsBusy",
         "target": [
-                  "aliasByNode(kl12c27x.Tomcat.*.Tomcat.ThreadPool.http_bio_0_0_0_0_100*.getCurrentThreadsBusy,2,4,6)",   
-                  "aliasByNode(kl12c293.Tomcat.*.Tomcat.ThreadPool.http_bio_0_0_0_0_100*.getCurrentThreadsBusy,2,4,6)"
+                  "aliasByNode(kl12c2di.Tomcat.*.Tomcat.ThreadPool.http_bio_0_0_0_0_100*.getCurrentThreadsBusy,2,4,6)",   
+                  "aliasByNode(kl12c2bc.Tomcat.*.Tomcat.ThreadPool.http_bio_0_0_0_0_100*.getCurrentThreadsBusy,2,4,6)"
                   ],
         "events": "*",  // instead of annotator, if you use the graphite events feature
                         // you can retrieve events matching specific tag(s) -- space separated
@@ -338,12 +338,12 @@ var dashboards =
     {
     "alias": "Percentage ThreadPool currentThreadsBusy/MaxThreads",
         "target": [
-                  "alias(asPercent(kl12c27x.Tomcat.cms_rest_a_ae1_kl12c27x_server_1.Tomcat.ThreadPool.http_bio_0_0_0_0_100*.getCurrentThreadsBusy,200),\"kl12c27x cms_rest Percentage CurrentThreadsBusy/MaxThreads\")",   
-                  "alias(asPercent(kl12c293.Tomcat.cms_rest_a_ae1_kl12c293_server_1.Tomcat.ThreadPool.http_bio_0_0_0_0_100*.getCurrentThreadsBusy,200),\"kl12c293 cms_rest Percentage CurrentThreadsBusy/MaxThreads\")",   
-                  "alias(asPercent(kl12c27x.Tomcat.tif_a_ae1_kl12c27x_server_1.Tomcat.ThreadPool.http_bio_0_0_0_0_100*.getCurrentThreadsBusy,200),\"kl12c27x tif Percentage CurrentThreadsBusy/MaxThreads\")",   
-                  "alias(asPercent(kl12c293.Tomcat.tif_a_ae1_kl12c293_server_1.Tomcat.ThreadPool.http_bio_0_0_0_0_100*.getCurrentThreadsBusy,200),\"kl12c293 tif Percentage CurrentThreadsBusy/MaxThreads\")",   
-                  "alias(asPercent(kl12c27x.Tomcat.mosaic_a_ae1_kl12c27x_server_1.Tomcat.ThreadPool.http_bio_0_0_0_0_100*.getCurrentThreadsBusy,200),\"kl12c27x mosaic Percentage CurrentThreadsBusy/MaxThreads\")",   
-                  "alias(asPercent(kl12c293.Tomcat.mosaic_a_ae1_kl12c293_server_1.Tomcat.ThreadPool.http_bio_0_0_0_0_100*.getCurrentThreadsBusy,200),\"kl12c293 mosaic Percentage CurrentThreadsBusy/MaxThreads\")",   
+                  "alias(asPercent(kl12c2di.Tomcat.cms_rest_a_ae3_kl12c2di_server_1.Tomcat.ThreadPool.http_bio_0_0_0_0_100*.getCurrentThreadsBusy,200),\"kl12c2di cms_rest Percentage CurrentThreadsBusy/MaxThreads\")",   
+                  "alias(asPercent(kl12c2bc.Tomcat.cms_rest_a_ae3_kl12c2bc_server_1.Tomcat.ThreadPool.http_bio_0_0_0_0_100*.getCurrentThreadsBusy,200),\"kl12c2bc cms_rest Percentage CurrentThreadsBusy/MaxThreads\")",   
+                  "alias(asPercent(kl12c2di.Tomcat.tif_a_ae3_kl12c2di_server_1.Tomcat.ThreadPool.http_bio_0_0_0_0_100*.getCurrentThreadsBusy,200),\"kl12c2di tif Percentage CurrentThreadsBusy/MaxThreads\")",   
+                  "alias(asPercent(kl12c2bc.Tomcat.tif_a_ae3_kl12c2bc_server_1.Tomcat.ThreadPool.http_bio_0_0_0_0_100*.getCurrentThreadsBusy,200),\"kl12c2bc tif Percentage CurrentThreadsBusy/MaxThreads\")",   
+                  "alias(asPercent(kl12c2di.Tomcat.mosaic_a_ae3_kl12c2di_server_1.Tomcat.ThreadPool.http_bio_0_0_0_0_100*.getCurrentThreadsBusy,200),\"kl12c2di mosaic Percentage CurrentThreadsBusy/MaxThreads\")",   
+                  "alias(asPercent(kl12c2bc.Tomcat.mosaic_a_ae3_kl12c2bc_server_1.Tomcat.ThreadPool.http_bio_0_0_0_0_100*.getCurrentThreadsBusy,200),\"kl12c2bc mosaic Percentage CurrentThreadsBusy/MaxThreads\")",   
                   ],
         "events": "*",  // instead of annotator, if you use the graphite events feature
                         // you can retrieve events matching specific tag(s) -- space separated
@@ -373,8 +373,8 @@ var dashboards =
    {
      "alias": "JDBC connectionPool Percentage numActive/MaxActive",
         "target": [
-                  "alias(asPercent(kl12c27x.Tomcat.cms_rest_a_ae1_kl12c27x_server_1.JMX.tomcat_jdbc.class_org_apache_tomcat_jdbc_pool_DataSource.name_jdbc_cms_rest_db.type_ConnectionPool.NumActive, kl12c27x.Tomcat.cms_rest_a_ae1_kl12c27x_server_1.JMX.tomcat_jdbc.class_org_apache_tomcat_jdbc_pool_DataSource.name_jdbc_cms_rest_db.type_ConnectionPool.MaxActive),\"kl12c27x Percentage numActive/MaxActive\")",  
-                  "alias(asPercent(kl12c293.Tomcat.cms_rest_a_ae1_kl12c293_server_1.JMX.tomcat_jdbc.class_org_apache_tomcat_jdbc_pool_DataSource.name_jdbc_cms_rest_db.type_ConnectionPool.NumActive, kl12c293.Tomcat.cms_rest_a_ae1_kl12c293_server_1.JMX.tomcat_jdbc.class_org_apache_tomcat_jdbc_pool_DataSource.name_jdbc_cms_rest_db.type_ConnectionPool.MaxActive),\"kl12c293 Percentage numActive/MaxActive\")"  
+                  "alias(asPercent(kl12c2di.Tomcat.cms_rest_a_ae3_kl12c2di_server_1.JMX.tomcat_jdbc.class_org_apache_tomcat_jdbc_pool_DataSource.name_jdbc_cms_rest_db.type_ConnectionPool.NumActive, kl12c2di.Tomcat.cms_rest_a_ae3_kl12c2di_server_1.JMX.tomcat_jdbc.class_org_apache_tomcat_jdbc_pool_DataSource.name_jdbc_cms_rest_db.type_ConnectionPool.MaxActive),\"kl12c2di Percentage numActive/MaxActive\")",  
+                  "alias(asPercent(kl12c2bc.Tomcat.cms_rest_a_ae3_kl12c2bc_server_1.JMX.tomcat_jdbc.class_org_apache_tomcat_jdbc_pool_DataSource.name_jdbc_cms_rest_db.type_ConnectionPool.NumActive, kl12c2bc.Tomcat.cms_rest_a_ae3_kl12c2bc_server_1.JMX.tomcat_jdbc.class_org_apache_tomcat_jdbc_pool_DataSource.name_jdbc_cms_rest_db.type_ConnectionPool.MaxActive),\"kl12c2bc Percentage numActive/MaxActive\")"  
                   ],
         "events": "*",  // instead of annotator, if you use the graphite events feature
                         // you can retrieve events matching specific tag(s) -- space separated
@@ -404,8 +404,8 @@ var dashboards =
     {
         "alias": "Oracle Backend Average Response Times",
         "target": [
-                  "aliasByNode(kl12c27x.Tomcat.*.Backends.Oracle_DB.Average_Response_Time_ms,2,4,5)",   
-                  "aliasByNode(kl12c293.Tomcat.*.Backends.Oracle_DB.Average_Response_Time_ms,2,4,5)"
+                  "aliasByNode(kl12c2di.Tomcat.*.Backends.Oracle_DB.Average_Response_Time_ms,2,4,5)",   
+                  "aliasByNode(kl12c2bc.Tomcat.*.Backends.Oracle_DB.Average_Response_Time_ms,2,4,5)"
                   ],
         "events": "*",  // instead of annotator, if you use the graphite events feature
                         // you can retrieve events matching specific tag(s) -- space separated
@@ -434,8 +434,8 @@ var dashboards =
    {
         "alias": "Oracle Backend Responses per 15sec",
         "target": [
-                  "aliasByNode(kl12c27x.Tomcat.*.Backends.Oracle_DB.Responses_Per_Interval,2,4,5)",   
-                  "aliasByNode(kl12c293.Tomcat.*.Backends.Oracle_DB.Responses_Per_Interval,2,4,5)"   
+                  "aliasByNode(kl12c2di.Tomcat.*.Backends.Oracle_DB.Responses_Per_Interval,2,4,5)",   
+                  "aliasByNode(kl12c2bc.Tomcat.*.Backends.Oracle_DB.Responses_Per_Interval,2,4,5)"   
                   ],
         "events": "*",  // instead of annotator, if you use the graphite events feature
                         // you can retrieve events matching specific tag(s) -- space separated
@@ -464,12 +464,12 @@ var dashboards =
       {
         "alias": "Frontends Responses per 15 sec",
         "target": [
-                  "aliasByNode(kl12c27x.Tomcat.*.Frontends.Apps.tif.Responses_Per_Interval,2,3,4,5)",   
-                  "aliasByNode(kl12c27x.Tomcat.*.Frontends.Apps.content.Responses_Per_Interval,2,3,4,5)",
-                  "aliasByNode(kl12c27x.Tomcat.*.Frontends.Apps.rootContext.Responses_Per_Interval,2,3,4,5)",
-                  "aliasByNode(kl12c293.Tomcat.*.Frontends.Apps.tif.Responses_Per_Interval,2,3,4,5)",   
-                  "aliasByNode(kl12c293.Tomcat.*.Frontends.Apps.content.Responses_Per_Interval,2,3,4,5)",
-                  "aliasByNode(kl12c293.Tomcat.*.Frontends.Apps.rootContext.Responses_Per_Interval,2,3,4,5)"
+                  "aliasByNode(kl12c2di.Tomcat.*.Frontends.Apps.tif.Responses_Per_Interval,2,3,4,5)",   
+                  "aliasByNode(kl12c2di.Tomcat.*.Frontends.Apps.content.Responses_Per_Interval,2,3,4,5)",
+                  "aliasByNode(kl12c2di.Tomcat.*.Frontends.Apps.rootContext.Responses_Per_Interval,2,3,4,5)",
+                  "aliasByNode(kl12c2bc.Tomcat.*.Frontends.Apps.tif.Responses_Per_Interval,2,3,4,5)",   
+                  "aliasByNode(kl12c2bc.Tomcat.*.Frontends.Apps.content.Responses_Per_Interval,2,3,4,5)",
+                  "aliasByNode(kl12c2bc.Tomcat.*.Frontends.Apps.rootContext.Responses_Per_Interval,2,3,4,5)"
                   ],        
         "events": "*",  // instead of annotator, if you use the graphite events feature
                         // you can retrieve events matching specific tag(s) -- space separated
@@ -498,12 +498,12 @@ var dashboards =
       {
         "alias": "Frontends Average Response Times",
         "target": [
-                  "aliasByNode(kl12c27x.Tomcat.*.Frontends.Apps.tif.Average_Response_Time_ms,2,3,4,5)",   
-                  "aliasByNode(kl12c27x.Tomcat.*.Frontends.Apps.content.Average_Response_Time_ms,2,3,4,5)",
-                  "aliasByNode(kl12c27x.Tomcat.*.Frontends.Apps.rootContext.Average_Response_Time_ms,2,3,4,5)",
-                  "aliasByNode(kl12c293.Tomcat.*.Frontends.Apps.tif.Average_Response_Time_ms,2,3,4,5)",   
-                  "aliasByNode(kl12c293.Tomcat.*.Frontends.Apps.content.Average_Response_Time_ms,2,3,4,5)",
-                  "aliasByNode(kl12c293.Tomcat.*.Frontends.Apps.rootContext.Average_Response_Time_ms,2,3,4,5)"
+                  "aliasByNode(kl12c2di.Tomcat.*.Frontends.Apps.tif.Average_Response_Time_ms,2,3,4,5)",   
+                  "aliasByNode(kl12c2di.Tomcat.*.Frontends.Apps.content.Average_Response_Time_ms,2,3,4,5)",
+                  "aliasByNode(kl12c2di.Tomcat.*.Frontends.Apps.rootContext.Average_Response_Time_ms,2,3,4,5)",
+                  "aliasByNode(kl12c2bc.Tomcat.*.Frontends.Apps.tif.Average_Response_Time_ms,2,3,4,5)",   
+                  "aliasByNode(kl12c2bc.Tomcat.*.Frontends.Apps.content.Average_Response_Time_ms,2,3,4,5)",
+                  "aliasByNode(kl12c2bc.Tomcat.*.Frontends.Apps.rootContext.Average_Response_Time_ms,2,3,4,5)"
                   ],
         "events": "*",  // instead of annotator, if you use the graphite events feature
                         // you can retrieve events matching specific tag(s) -- space separated
@@ -532,12 +532,12 @@ var dashboards =
       {
         "alias": "Frontends Errors per 15 sec",
         "target": [
-                  "aliasByNode(kl12c27x.Tomcat.*.Frontends.Apps.tif.Errors_Per_Interval,2,3,4,5)",   
-                  "aliasByNode(kl12c27x.Tomcat.*.Frontends.Apps.content.Errors_Per_Interval,2,3,4,5)",
-                  "aliasByNode(kl12c27x.Tomcat.*.Frontends.Apps.rootContext.Errors_Per_Interval,2,3,4,5)",
-                  "aliasByNode(kl12c293.Tomcat.*.Frontends.Apps.tif.Errors_Per_Interval,2,3,4,5)",   
-                  "aliasByNode(kl12c293.Tomcat.*.Frontends.Apps.content.Errors_Per_Interval,2,3,4,5)",
-                  "aliasByNode(kl12c293.Tomcat.*.Frontends.Apps.rootContext.Errors_Per_Interval,2,3,4,5)"
+                  "aliasByNode(kl12c2di.Tomcat.*.Frontends.Apps.tif.Errors_Per_Interval,2,3,4,5)",   
+                  "aliasByNode(kl12c2di.Tomcat.*.Frontends.Apps.content.Errors_Per_Interval,2,3,4,5)",
+                  "aliasByNode(kl12c2di.Tomcat.*.Frontends.Apps.rootContext.Errors_Per_Interval,2,3,4,5)",
+                  "aliasByNode(kl12c2bc.Tomcat.*.Frontends.Apps.tif.Errors_Per_Interval,2,3,4,5)",   
+                  "aliasByNode(kl12c2bc.Tomcat.*.Frontends.Apps.content.Errors_Per_Interval,2,3,4,5)",
+                  "aliasByNode(kl12c2bc.Tomcat.*.Frontends.Apps.rootContext.Errors_Per_Interval,2,3,4,5)"
                   ],        
         "events": "*",  // instead of annotator, if you use the graphite events feature
                         // you can retrieve events matching specific tag(s) -- space separated
@@ -566,7 +566,7 @@ var dashboards =
   
       {
         "alias": "TIF CMSCLient ehcache ObjectCount",
-        "target": "aliasByNode(*.Tomcat.tif_a_ae1_*_server_1.JMX.net_sf_ehcache.CacheManager_tif.name_cmsClient.type_CacheStatistics.ObjectCount,2,6,7,8)",   
+        "target": "aliasByNode(*.Tomcat.tif_a_ae3_*_server_1.JMX.net_sf_ehcache.CacheManager_tif.name_cmsClient.type_CacheStatistics.ObjectCount,2,6,7,8)",   
         
         "events": "*",  // instead of annotator, if you use the graphite events feature
                         // you can retrieve events matching specific tag(s) -- space separated
@@ -594,9 +594,9 @@ var dashboards =
       {
         "alias": "RequestCount",
         "target": [
-                  "aliasByNode(*.Tomcat.tif_a_ae1_*_server_1.JMX.Catalina.name_http_bio_0_0_0_0_*.type_GlobalRequestProcessor.requestCount,2,6,7)",   
-                  "aliasByNode(*.Tomcat.cms_rest_a_ae1_*_server_1.JMX.Catalina.name_http_bio_0_0_0_0_*.type_GlobalRequestProcessor.requestCount,2,6,7)",   
-                  "aliasByNode(*.Tomcat.mosaic_a_ae1_*_server_1.JMX.Catalina.name_http_bio_0_0_0_0_*.type_GlobalRequestProcessor.requestCount,2,6,7)",   
+                  "aliasByNode(*.Tomcat.tif_a_ae3_*_server_1.JMX.Catalina.name_http_bio_0_0_0_0_*.type_GlobalRequestProcessor.requestCount,2,6,7)",   
+                  "aliasByNode(*.Tomcat.cms_rest_a_ae3_*_server_1.JMX.Catalina.name_http_bio_0_0_0_0_*.type_GlobalRequestProcessor.requestCount,2,6,7)",   
+                  "aliasByNode(*.Tomcat.mosaic_a_ae3_*_server_1.JMX.Catalina.name_http_bio_0_0_0_0_*.type_GlobalRequestProcessor.requestCount,2,6,7)",   
                   ],
         "events": "*",  // instead of annotator, if you use the graphite events feature
                         // you can retrieve events matching specific tag(s) -- space separated
