@@ -3,7 +3,7 @@
    ========================================================================== */
 
 body {
-    background: url("../img/blue-sky.jpg") fixed center center;
+    //background: url("../img/blue-sky.jpg") fixed center center;
     padding-top: 40px;
     padding-bottom: 0;
     font-size:14px
@@ -18,7 +18,7 @@ body > .container {
 }
 
 #giraffe-navbar-inner {
-  background-color: #fafafa;
+  /*background-color: #fafafa;
   background-image: -moz-linear-gradient(top, #ffb100, #d65100);
   background-image: -ms-linear-gradient(top, #ffb100, #d65100);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffb100), to(#d65100));
@@ -28,7 +28,11 @@ body > .container {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#'ffb100, endColorstr='#'d65100, GradientType=0);
   -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
      -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
-          box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+          box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);*/
+background:-o-linear-gradient(bottom, #4c4c4c 5%, #b2b2b2 100%);  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #4c4c4c), color-stop(1, #b2b2b2) );
+background:-moz-linear-gradient( center top, #4c4c4c 5%, #b2b2b2 100% );
+filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#4c4c4c", endColorstr="#b2b2b2");  background: -o-linear-gradient(top,#4c4c4c,b2b2b2);
+
 }
 
 .navbar .brand {

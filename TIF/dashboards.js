@@ -174,7 +174,7 @@ var dashboards =
       },
   ]
   },
-{ "name": "Transactions per Second",  // give your dashboard a name (required!)
+{ "name": "Number of Transactions",  // give your dashboard a name (required!)
     "refresh": 5000,  // each dashboard has its own refresh interval (in ms)
     // add an (optional) dashboard description. description can be written in markdown / html.
     
@@ -184,8 +184,8 @@ var dashboards =
   
      {
 
-         "alias": "Transactions per Second",
-        "target": "aliasByNode(gatling.tif2.*.ok.count,2)",
+         "alias": "Number of Transactions",
+        "target": "integral(aliasByNode(gatling.tif2.*.ok.count,2))",
       
         "events": "*",  // instead of annotator, if you use the graphite events feature
                         // you can retrieve events matching specific tag(s) -- space separated
