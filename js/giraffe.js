@@ -248,8 +248,8 @@ generateDataURL = function(targets, annotator_target, max_data_points) {
   annotator_target = annotator_target ? "&target=" + annotator_target : "";
   data_targets = generateGraphiteTargets(targets);
   //return "" + graphite_url + "/render?from=-" + period + "minutes&" + data_targets + annotator_target + "&maxDataPoints=" + max_data_points + "&format=json&jsonp=?";
- //return "" + graphite_url + "/render?" + period  + data_targets + annotator_target + "&maxDataPoints=" + max_data_points + "&format=json&jsonp=?";
-  return "" + graphite_url + "/render?" + period  + data_targets + annotator_target + "&maxDataPoints=" + 100 + "&format=json&jsonp=?";
+ return "" + graphite_url + "/render?" + period  + data_targets + annotator_target + "&maxDataPoints=" + max_data_points + "&format=json&jsonp=?";
+ // return "" + graphite_url + "/render?" + period  + data_targets + annotator_target + "&maxDataPoints=" + 100 + "&format=json&jsonp=?";
 };
 
 generateEventsURL = function(event_tags) {
