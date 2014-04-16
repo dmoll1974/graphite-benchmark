@@ -162,7 +162,7 @@ graphScaffold = function() {
   offset = 0;
   for (i = _i = 0, _len = metrics.length; _i < _len; i = ++_i) {
     metric = metrics[i];
-    colspan = metric.colspan != null ? metric.colspan : 1;
+    colspan = metric.colspan != null ? metric.colspan : 3;
     context['metrics'].push({
       start_row: offset % 3 === 0,
       end_row: offset % 3 === 2,
@@ -284,8 +284,8 @@ createGraph = function(anchor, metric) {
     min: metric.min || 0,
     max: metric.max,
     null_as: metric.null_as === void 0 ? null : metric.null_as,
-    renderer: metric.renderer || 'area',
-    interpolation: metric.interpolation || 'step-before',
+    renderer: metric.renderer || 'line',
+    interpolation: metric.interpolation || 'cardinal',
     unstack: metric.unstack === void 0 ? unstackable : metric.unstack,
     stroke: metric.stroke === false ? false : true,
     strokeWidth: metric.stroke_width,
