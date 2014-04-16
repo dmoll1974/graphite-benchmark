@@ -11,7 +11,7 @@ $.ajax({
                                     }
  });
  
- $.getScript("giraffe.js", function(){
+ $.getScript("../js/giraffe.js", function(){
 
    alert("Script loaded and executed.");
    // Here you can use anything you defined in the loaded script
