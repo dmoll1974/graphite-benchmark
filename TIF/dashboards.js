@@ -17,14 +17,16 @@ $.ajax({
   async: false,
   success: function(response) {
   
-  dashboards= response;
+    dashboards= response;
+  
+    $.getScript("../js/giraffe.js", function(){
+
+   // Here you can use anything you defined in the loaded script
+    });
                                     }
  });
  
- $.getScript("../js/giraffe.js", function(){
 
-   // Here you can use anything you defined in the loaded script
-});
 
 var scheme = [
 
