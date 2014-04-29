@@ -1,4 +1,5 @@
-buildPlanId =  getUrlVars()["buildPlanId"];
+var graphite_url = "http://172.21.42.152";  
+var buildPlanId =  getUrlVars()["buildPlanId"];
 
 function getUrlVars() {
     var vars = {};
