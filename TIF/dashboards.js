@@ -1,8 +1,17 @@
-var graphite_url = "http://172.21.42.152";  // enter your graphite url, e.g. http://your.graphite.com
-var giraffeHost = "http://172.21.42.152:8080/TIF";
+buildPlanId =  getUrlVars()["buildPlanId"];
+
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,    
+    function(m,key,value) {
+      vars[key] = value;
+    });
+    return vars;
+}
+
 
 $.ajax({
-  url: 'http://lt-dash.cf.eden.klm.com/get-giraffe-dashboard-file/tif',
+  url: 'http://lt-dash-dev.cf.eden.klm.com/get-giraffe-dashboard-file/' + buildPlanId,
   dataType: 'json',
   async: false,
   success: function(response) {
