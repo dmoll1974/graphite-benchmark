@@ -12,7 +12,7 @@ function getUrlVars() {
 
 
 $.ajax({
-  url: 'http://lt-dash-dev.cf.eden.klm.com/get-giraffe-dashboard-file/' + buildPlanId,
+  url: 'http://lt-dash.cf.eden.klm.com/get-giraffe-dashboard-file/' + buildPlanId,
   dataType: 'json',
   async: false,
   success: function(response) {
