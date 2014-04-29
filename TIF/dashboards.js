@@ -2,7 +2,7 @@ var graphite_url = "http://172.21.42.152";  // enter your graphite url, e.g. htt
 var giraffeHost = "http://172.21.42.152:8080/TIF";
 
 $.ajax({
-  url: 'http://nodejs-dashboard.cf.eden.klm.com/get-giraffe-dashboard-file/tif',
+  url: 'http://lt-dash.cf.eden.klm.com/get-giraffe-dashboard-file/tif',
   dataType: 'json',
   async: false,
   success: function(response) {
