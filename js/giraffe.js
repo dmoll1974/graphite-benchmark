@@ -181,6 +181,7 @@ init = function() {
   $('.dropdown-menu').empty();
   for (_i = 0, _len = dashboards.length; _i < _len; _i++) {
     dash = dashboards[_i];
+    $('.dropdown-menu').append("<li><a href=\"#\">Overview</a></li>");
     $('.dropdown-menu').append("<li><a href=\"#\">" + dash.name + "</a></li>");
   }
   graphScaffold();
