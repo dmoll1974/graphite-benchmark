@@ -179,9 +179,9 @@ graphScaffold = function() {
 init = function() {
   var dash, i, metric, refreshInterval, _i, _j, _len, _len1;
   $('.dropdown-menu').empty();
+  $('.dropdown-menu').append("<li><a href=\"#\">Overview</a></li>");
   for (_i = 0, _len = dashboards.length; _i < _len; _i++) {
     dash = dashboards[_i];
-    $('.dropdown-menu').append("<li><a href=\"#\">Overview</a></li>");
     $('.dropdown-menu').append("<li><a href=\"#\">" + dash.name + "</a></li>");
   }
   graphScaffold();
